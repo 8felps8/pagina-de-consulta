@@ -1,0 +1,28 @@
+.search-results {
+  margin: 0 0 8px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background-color: var(--color-accent-soft);
+}
+
+.search-results__text {
+  display: inline;
+  margin: 0 12px 0 0;
+  font-weight: 600;
+}
+
+.search-results__clear {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  color: var(--color-accent);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.search-results__clear:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}

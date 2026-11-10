@@ -1,0 +1,2254 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Guia de consulta para começar projetos web com HTML, CSS, BEM e design responsivo: estrutura de pastas, semântica, checklist de entrega e modelos prontos."
+    />
+    <meta name="author" content="Felipe Leite" />
+    <meta
+      name="keywords"
+      content="HTML, CSS, BEM, design responsivo, semântica, guia, checklist, TripleTen"
+    />
+    <meta name="theme-color" content="#2f6fed" />
+    <link rel="stylesheet" href="./pages/index.css" />
+    <link rel="icon" href="./favicon.ico" sizes="32x32" />
+    <link rel="icon" href="./images/logo.svg" type="image/svg+xml" />
+    <title>Página de Consulta · Guia para começar projetos web</title>
+    <script src="./scripts/index.js" defer></script>
+  </head>
+  <body>
+    <div class="page">
+      <script>
+        // Aplica o tema salvo (ou o do sistema) antes de a página aparecer, para ela não "piscar".
+        (function () {
+          var page = document.currentScript.parentElement;
+          var saved = null;
+          try {
+            saved = localStorage.getItem("consulta-tema");
+          } catch (error) {}
+          var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (saved === "escuro" || (saved === null && prefersDark)) {
+            page.classList.add("page_theme_dark");
+          }
+        })();
+      </script>
+
+      <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+      <header class="header">
+        <div class="header__container">
+          <button
+            class="header__menu-button"
+            type="button"
+            aria-label="Abrir o menu de seções"
+            aria-expanded="false"
+            aria-controls="menu"
+          >
+            <svg class="header__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+          <a class="header__brand" href="#inicio">
+            <img class="header__logo" src="./images/logo.svg" alt="Logotipo da Página de Consulta" />
+            <span class="header__title">Página de Consulta</span>
+          </a>
+          <form class="header__search search" role="search">
+            <label class="search__label" for="search-input">Buscar no guia</label>
+            <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" />
+              <path d="m20 20-4-4" />
+            </svg>
+            <input
+              class="search__input"
+              id="search-input"
+              type="search"
+              placeholder="Buscar no guia"
+              autocomplete="off"
+            />
+            <kbd class="search__hint" aria-hidden="true">/</kbd>
+          </form>
+          <button
+            class="header__theme theme-toggle"
+            type="button"
+            aria-label="Mudar para o tema escuro"
+            aria-pressed="false"
+          >
+            <svg class="theme-toggle__icon theme-toggle__icon_type_moon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z" />
+            </svg>
+            <svg class="theme-toggle__icon theme-toggle__icon_type_sun" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="layout">
+        <div class="layout__overlay" aria-hidden="true"></div>
+
+        <nav class="layout__sidebar nav" id="menu" aria-label="Seções do guia">
+          <div class="nav__header">
+            <p class="nav__heading">Conteúdo</p>
+            <button class="nav__close" type="button" aria-label="Fechar o menu">
+              <svg class="nav__close-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12M18 6 6 18" />
+              </svg>
+            </button>
+          </div>
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a class="nav__link" href="#inicio"><span class="nav__number">00</span>Início</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#estrutura"><span class="nav__number">01</span>Estrutura do projeto</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#passo-a-passo"><span class="nav__number">02</span>Passo a passo</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#figma"><span class="nav__number">03</span>Lendo o Figma</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#html"><span class="nav__number">04</span>HTML e semântica</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#bem"><span class="nav__number">05</span>BEM</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#css"><span class="nav__number">06</span>CSS: regras de ouro</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#responsividade"><span class="nav__number">07</span>Responsividade</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#git"><span class="nav__number">08</span>Git e GitHub Pages</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#checklist"><span class="nav__number">09</span>Checklist de entrega</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#erros"><span class="nav__number">10</span>Erros comuns</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#modelos"><span class="nav__number">11</span>Modelos prontos</a>
+            </li>
+            <li class="nav__item">
+              <a class="nav__link" href="#glossario"><span class="nav__number">12</span>Glossário</a>
+            </li>
+          </ul>
+        </nav>
+
+        <main class="layout__main content" id="conteudo">
+          <div class="search-results" hidden>
+            <p class="search-results__text" aria-live="polite"></p>
+            <button class="search-results__clear" type="button">Limpar busca</button>
+          </div>
+
+          <!-- ===================== INÍCIO ===================== -->
+          <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <p class="hero__eyebrow">Guia de estudos · HTML, CSS e BEM</p>
+            <h1 class="hero__title" id="hero-title">Tudo o que você precisa para começar um projeto web</h1>
+            <p class="hero__subtitle">
+              Um passo a passo para montar a estrutura, escrever HTML semântico, nomear classes com BEM,
+              criar layouts responsivos e entregar sem erros. Feito a partir dos projetos da TripleTen.
+            </p>
+            <div class="hero__actions">
+              <a class="hero__button hero__button_type_primary" href="#passo-a-passo">Começar um projeto</a>
+              <a class="hero__button" href="#checklist">Abrir o checklist</a>
+            </div>
+
+            <h2 class="hero__steps-title">Como usar este guia</h2>
+            <ol class="hero__steps">
+              <li class="hero__step">
+                <a class="hero__step-link" href="#passo-a-passo">
+                  <span class="hero__step-number">1</span>
+                  <span class="hero__step-name">Prepare o terreno</span>
+                  <span class="hero__step-text">Clone, pastas e arquivos de configuração. É igual em todo projeto.</span>
+                </a>
+              </li>
+              <li class="hero__step">
+                <a class="hero__step-link" href="#figma">
+                  <span class="hero__step-number">2</span>
+                  <span class="hero__step-name">Estude o design</span>
+                  <span class="hero__step-text">Antes de programar, anote as medidas numa tabela.</span>
+                </a>
+              </li>
+              <li class="hero__step">
+                <a class="hero__step-link" href="#html">
+                  <span class="hero__step-number">3</span>
+                  <span class="hero__step-name">Escreva o HTML</span>
+                  <span class="hero__step-text">Toda a estrutura e os textos, ainda sem CSS.</span>
+                </a>
+              </li>
+              <li class="hero__step">
+                <a class="hero__step-link" href="#css">
+                  <span class="hero__step-number">4</span>
+                  <span class="hero__step-name">CSS, um bloco por vez</span>
+                  <span class="hero__step-text">Comece pela maior tela do design e confira no navegador.</span>
+                </a>
+              </li>
+              <li class="hero__step">
+                <a class="hero__step-link" href="#responsividade">
+                  <span class="hero__step-number">5</span>
+                  <span class="hero__step-name">Deixe responsivo</span>
+                  <span class="hero__step-text">Media queries só com o que muda em cada tela.</span>
+                </a>
+              </li>
+              <li class="hero__step">
+                <a class="hero__step-link" href="#checklist">
+                  <span class="hero__step-number">6</span>
+                  <span class="hero__step-name">Confira e entregue</span>
+                  <span class="hero__step-text">Marque o checklist, faça commit, push e publique.</span>
+                </a>
+              </li>
+            </ol>
+
+            <aside class="note">
+              <p class="note__title">Dica</p>
+              <p class="note__text">
+                Não tente fazer tudo de uma vez. Termine um bloco, confira no navegador e só depois passe
+                para o próximo. Use a busca no topo (atalho: tecla <kbd class="inline-code">/</kbd>) para achar
+                qualquer assunto.
+              </p>
+            </aside>
+          </section>
+
+          <!-- ===================== 01. ESTRUTURA ===================== -->
+          <section class="topic" id="estrutura" aria-labelledby="estrutura-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 01</p>
+              <h2 class="topic__title" id="estrutura-title">A estrutura de um projeto</h2>
+              <p class="topic__lead">Todo projeto termina com a mesma cara. Conhecer o destino ajuda a não se perder no caminho.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">A árvore de pastas</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Estrutura final</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">nome_do_projeto/
+├── blocks/              ← um arquivo CSS por bloco BEM
+│   ├── page.css
+│   ├── header.css
+│   ├── ...
+│   └── footer.css
+├── images/              ← todas as imagens (comprimidas)
+├── pages/
+│   └── index.css        ← só @import, nada de estilos
+├── vendor/              ← código de terceiros (não se edita)
+│   ├── normalize.css
+│   ├── fonts.css        ← só se usar fontes locais
+│   └── fonts/           ← os arquivos .woff2
+├── .editorconfig        ← regras de formatação do editor
+├── .gitignore           ← o que o Git deve ignorar
+├── .prettierignore      ← o que o Prettier não formata
+├── favicon.ico          ← ícone da aba do navegador
+├── index.html           ← a página
+└── README.md            ← apresentação do projeto</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Para que serve cada parte</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="Para que serve cada pasta">
+                <table class="data-table__table data-table__table_wide">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Pasta / arquivo</th>
+                      <th class="data-table__head-cell" scope="col">Para que serve</th>
+                      <th class="data-table__head-cell" scope="col">Quem escreve</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">blocks/</code></td>
+                      <td class="data-table__cell">Os estilos da página, um arquivo por bloco</td>
+                      <td class="data-table__cell">Você</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">images/</code></td>
+                      <td class="data-table__cell">As imagens usadas na página</td>
+                      <td class="data-table__cell">Você exporta do Figma</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">pages/index.css</code></td>
+                      <td class="data-table__cell">Junta todos os CSS num só, com <code class="inline-code">@import</code></td>
+                      <td class="data-table__cell">Você</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">vendor/</code></td>
+                      <td class="data-table__cell">Código pronto de outras pessoas</td>
+                      <td class="data-table__cell">Você copia e <strong>não edita</strong></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">index.html</code></td>
+                      <td class="data-table__cell">A estrutura e o conteúdo da página</td>
+                      <td class="data-table__cell">Você</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">.editorconfig</code>, <code class="inline-code">.gitignore</code>, <code class="inline-code">.prettierignore</code></td>
+                      <td class="data-table__cell">Configurações</td>
+                      <td class="data-table__cell">Você copia do projeto anterior</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">favicon.ico</code></td>
+                      <td class="data-table__cell">Ícone da aba</td>
+                      <td class="data-table__cell">Você exporta ou gera</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">README.md</code></td>
+                      <td class="data-table__cell">Explica o projeto para quem abre o GitHub</td>
+                      <td class="data-table__cell">Você</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================== 02. PASSO A PASSO ===================== -->
+          <section class="topic" id="passo-a-passo" aria-labelledby="passo-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 02</p>
+              <h2 class="topic__title" id="passo-title">Passo a passo para começar</h2>
+              <p class="topic__lead">Os 11 passos, na ordem. Os primeiros levam uns 15 minutos e são iguais em todo projeto.</p>
+            </header>
+
+            <ol class="steps">
+              <li class="steps__item" data-part>
+                <span class="steps__number">1</span>
+                <h3 class="steps__title">Clonar o repositório</h3>
+                <p class="topic__text">
+                  A TripleTen cria o repositório no seu GitHub. Você só precisa trazer ele para o computador.
+                  No VS Code, abra o terminal em <strong>Terminal → New Terminal</strong> e entre na pasta dos projetos:
+                </p>
+                <figure class="code">
+                  <figcaption class="code__header">
+                    <span class="code__label">Terminal</span>
+                    <button class="code__copy" type="button">Copiar</button>
+                  </figcaption>
+                  <pre class="code__pre"><code class="code__content">cd ~/projects</code></pre>
+                </figure>
+                <p class="topic__text">Depois clone, trocando o final pelo nome do repositório:</p>
+                <figure class="code">
+                  <figcaption class="code__header">
+                    <span class="code__label">Terminal</span>
+                    <button class="code__copy" type="button">Copiar</button>
+                  </figcaption>
+                  <pre class="code__pre"><code class="code__content">git clone https://github.com/8felps8/NOME_DO_REPOSITORIO.git</code></pre>
+                </figure>
+                <p class="topic__text">Por fim, abra a pasta no VS Code em <strong>File → Open Folder</strong>.</p>
+                <aside class="note">
+                  <p class="note__title">O que o <code class="inline-code">clone</code> faz</p>
+                  <p class="note__text">
+                    Baixa o repositório e já deixa ele conectado ao GitHub. Assim, depois, o
+                    <code class="inline-code">git push</code> sabe para onde enviar.
+                  </p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">2</span>
+                <h3 class="steps__title">Criar as pastas</h3>
+                <p class="topic__text">Na barra lateral do VS Code, use o ícone de <strong>nova pasta</strong> e crie:</p>
+                <ul class="topic__list">
+                  <li class="topic__list-item"><code class="inline-code">blocks</code></li>
+                  <li class="topic__list-item"><code class="inline-code">images</code></li>
+                  <li class="topic__list-item"><code class="inline-code">pages</code></li>
+                  <li class="topic__list-item"><code class="inline-code">vendor</code></li>
+                  <li class="topic__list-item"><code class="inline-code">vendor/fonts</code> (só se o projeto pedir fontes locais)</li>
+                </ul>
+                <aside class="note note_type_warning">
+                  <p class="note__title">Atenção ao nome</p>
+                  <p class="note__text">Tudo em minúsculas, sem espaços e sem acentos.</p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">3</span>
+                <h3 class="steps__title">Os arquivos de configuração</h3>
+                <p class="topic__text">
+                  São arquivos de texto. O <strong>ponto no começo faz parte do nome</strong>. Use o ícone de
+                  <strong>novo arquivo</strong> e digite o nome exatamente assim:
+                </p>
+                <div class="data-table" tabindex="0" role="region" aria-label="Arquivos de configuração">
+                  <table class="data-table__table data-table__table_wide">
+                    <thead>
+                      <tr class="data-table__row">
+                        <th class="data-table__head-cell" scope="col">Arquivo</th>
+                        <th class="data-table__head-cell" scope="col">Conteúdo</th>
+                        <th class="data-table__head-cell" scope="col">Por quê</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="data-table__row">
+                        <td class="data-table__cell"><code class="inline-code">.gitignore</code></td>
+                        <td class="data-table__cell"><code class="inline-code">.DS_Store</code></td>
+                        <td class="data-table__cell">O Mac cria esse arquivo oculto sozinho. Ele não deve ir para o GitHub.</td>
+                      </tr>
+                      <tr class="data-table__row">
+                        <td class="data-table__cell"><code class="inline-code">.prettierignore</code></td>
+                        <td class="data-table__cell"><code class="inline-code">vendor/normalize.css</code></td>
+                        <td class="data-table__cell">O Prettier formata o código sozinho, mas não deve mexer em código de terceiros.</td>
+                      </tr>
+                      <tr class="data-table__row">
+                        <td class="data-table__cell"><code class="inline-code">.editorconfig</code></td>
+                        <td class="data-table__cell">Veja em <a class="topic__link" href="#modelos">Modelos prontos</a></td>
+                        <td class="data-table__cell">Faz o editor usar 2 espaços, UTF-8 etc. em qualquer computador.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <aside class="note note_type_success">
+                  <p class="note__title">Dica de ouro</p>
+                  <p class="note__text">
+                    Esses três arquivos são <strong>iguais em todos os projetos</strong>. Copiar do projeto
+                    anterior é o normal, não é trapaça.
+                  </p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">4</span>
+                <h3 class="steps__title">O <code class="inline-code">normalize.css</code></h3>
+                <p class="topic__text">
+                  O normalize "zera" as diferenças entre navegadores (Chrome, Firefox...), para a página ficar
+                  igual em todos.
+                </p>
+                <ul class="topic__list">
+                  <li class="topic__list-item">Copie de um projeto anterior para <code class="inline-code">vendor/normalize.css</code>, <strong>ou</strong></li>
+                  <li class="topic__list-item">baixe em <code class="inline-code">github.com/necolas/normalize.css</code>.</li>
+                </ul>
+                <aside class="note note_type_warning">
+                  <p class="note__title">Regra</p>
+                  <p class="note__text">Nunca edite esse arquivo.</p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">5</span>
+                <h3 class="steps__title">As fontes (se o projeto pedir fontes locais)</h3>
+                <ol class="topic__list">
+                  <li class="topic__list-item">Baixe do site oficial indicado no enunciado (ex.: Inter em <code class="inline-code">rsms.me/inter</code>).</li>
+                  <li class="topic__list-item">No Figma, descubra <strong>quais pesos</strong> o design usa: clique em cada texto e veja o painel da direita.</li>
+                  <li class="topic__list-item">Copie <strong>só esses pesos</strong>, em formato <code class="inline-code">.woff2</code>, para <code class="inline-code">vendor/fonts/</code>. O checklist reprova fontes que não são usadas.</li>
+                  <li class="topic__list-item">Crie <code class="inline-code">vendor/fonts.css</code> com um <code class="inline-code">@font-face</code> para cada peso (veja em <a class="topic__link" href="#modelos">Modelos prontos</a>).</li>
+                </ol>
+                <p class="topic__text"><strong>Tabela de pesos</strong> (vale decorar):</p>
+                <div class="data-table" tabindex="0" role="region" aria-label="Pesos de fonte">
+                  <table class="data-table__table">
+                    <thead>
+                      <tr class="data-table__row">
+                        <th class="data-table__head-cell" scope="col">Nome no Figma</th>
+                        <th class="data-table__head-cell" scope="col"><code class="inline-code">font-weight</code></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="data-table__row"><td class="data-table__cell">Thin</td><td class="data-table__cell">100</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Light</td><td class="data-table__cell">300</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Regular / Normal</td><td class="data-table__cell">400</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Medium</td><td class="data-table__cell">500</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Semi Bold</td><td class="data-table__cell">600</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Bold</td><td class="data-table__cell">700</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Extra Bold</td><td class="data-table__cell">800</td></tr>
+                      <tr class="data-table__row"><td class="data-table__cell">Black</td><td class="data-table__cell">900</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <aside class="note">
+                  <p class="note__title">E se for Google Fonts?</p>
+                  <p class="note__text">
+                    Aí não precisa de <code class="inline-code">fonts.css</code>: basta colar no
+                    <code class="inline-code">&lt;head&gt;</code> a tag <code class="inline-code">&lt;link&gt;</code>
+                    que o Google Fonts fornece.
+                  </p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">6</span>
+                <h3 class="steps__title">O <code class="inline-code">favicon.ico</code></h3>
+                <p class="topic__text">O ícone que aparece na aba do navegador. Fica na <strong>raiz</strong> do projeto.</p>
+                <ul class="topic__list">
+                  <li class="topic__list-item">Se o design tiver um ícone, exporte do Figma.</li>
+                  <li class="topic__list-item">Se não tiver, gere um em <strong>favicon.io</strong>, a partir de uma imagem ou de um texto.</li>
+                </ul>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">7</span>
+                <h3 class="steps__title">As imagens</h3>
+                <ol class="topic__list">
+                  <li class="topic__list-item">No Figma, selecione a imagem e, no painel direito, vá em <strong>Export → Export</strong>.</li>
+                  <li class="topic__list-item"><strong>Comprima</strong> antes de usar, em <strong>squoosh.app</strong> ou <strong>tinypng.com</strong>. Uma foto de 3 MB costuma cair para 200 KB.</li>
+                  <li class="topic__list-item">Dê nomes consistentes, de preferência o nome da camada no Figma: minúsculas, sem espaços (use <code class="inline-code">-</code> ou <code class="inline-code">_</code>).</li>
+                </ol>
+                <div class="data-table" tabindex="0" role="region" aria-label="Formatos de imagem">
+                  <table class="data-table__table">
+                    <thead>
+                      <tr class="data-table__row">
+                        <th class="data-table__head-cell" scope="col">Tipo de imagem</th>
+                        <th class="data-table__head-cell" scope="col">Formato</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="data-table__row">
+                        <td class="data-table__cell">Fotos</td>
+                        <td class="data-table__cell"><code class="inline-code">.jpg</code> ou <code class="inline-code">.webp</code></td>
+                      </tr>
+                      <tr class="data-table__row">
+                        <td class="data-table__cell">Logos, ícones, desenhos com cores chapadas</td>
+                        <td class="data-table__cell"><code class="inline-code">.svg</code></td>
+                      </tr>
+                      <tr class="data-table__row">
+                        <td class="data-table__cell">Imagens com transparência que não são vetor</td>
+                        <td class="data-table__cell"><code class="inline-code">.png</code></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">8</span>
+                <h3 class="steps__title">O <code class="inline-code">pages/index.css</code></h3>
+                <p class="topic__text">Ele <strong>só tem <code class="inline-code">@import</code></strong>, nesta ordem:</p>
+                <figure class="code">
+                  <figcaption class="code__header">
+                    <span class="code__label">pages/index.css</span>
+                    <button class="code__copy" type="button">Copiar</button>
+                  </figcaption>
+                  <pre class="code__pre"><code class="code__content">@import url("../vendor/normalize.css");
+@import url("../vendor/fonts.css");
+@import url("../blocks/page.css");
+@import url("../blocks/header.css");
+/* ...um import para cada bloco, na ordem da página */
+@import url("../blocks/footer.css");</code></pre>
+                </figure>
+                <ol class="topic__list">
+                  <li class="topic__list-item"><strong>O normalize vem primeiro.</strong> No CSS, quando duas regras definem a mesma coisa, vence a que vem depois. Assim os seus estilos sempre ganham do normalize.</li>
+                  <li class="topic__list-item"><strong>O <code class="inline-code">fonts.css</code> vem logo depois.</strong> O checklist pede essa ordem.</li>
+                  <li class="topic__list-item"><strong>O <code class="inline-code">@import</code> fica no topo do arquivo.</strong> Se vier depois de qualquer regra, o navegador ignora.</li>
+                </ol>
+                <aside class="note">
+                  <p class="note__title">Por que <code class="inline-code">../</code>?</p>
+                  <p class="note__text">
+                    O <code class="inline-code">index.css</code> está dentro de <code class="inline-code">pages/</code>.
+                    O <code class="inline-code">../</code> "volta uma pasta" para a raiz do projeto, e daí entra em
+                    <code class="inline-code">vendor/</code> ou <code class="inline-code">blocks/</code>.
+                  </p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">9</span>
+                <h3 class="steps__title">O <code class="inline-code">index.html</code></h3>
+                <p class="topic__text">
+                  Comece <strong>sempre</strong> pelo esqueleto de <a class="topic__link" href="#modelos">Modelos prontos</a>.
+                  Ele já tem tudo o que o verificador da TripleTen exige: as metas, o link do CSS, o favicon e a
+                  estrutura <code class="inline-code">div.page</code> com <code class="inline-code">header</code>,
+                  <code class="inline-code">main.content</code> e <code class="inline-code">footer</code>. Depois,
+                  preencha o conteúdo seguindo a seção <a class="topic__link" href="#html">HTML e semântica</a>.
+                </p>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">10</span>
+                <h3 class="steps__title">Os arquivos dos blocos</h3>
+                <p class="topic__text">Conforme você escreve o HTML, cada <strong>bloco novo</strong> (ex.: <code class="inline-code">class="lead"</code>) ganha:</p>
+                <ol class="topic__list">
+                  <li class="topic__list-item">um arquivo <code class="inline-code">blocks/lead.css</code>;</li>
+                  <li class="topic__list-item">uma linha <code class="inline-code">@import url("../blocks/lead.css");</code> no <code class="inline-code">pages/index.css</code>.</li>
+                </ol>
+                <aside class="note note_type_warning">
+                  <p class="note__title">Cuidado com o nome do arquivo</p>
+                  <p class="note__text">
+                    É <code class="inline-code">lead.css</code>: <strong>sem ponto no começo</strong> e
+                    <strong>com <code class="inline-code">.css</code> no final</strong>. Já aconteceu de criar
+                    <code class="inline-code">.lead</code> (o nome da classe) e a página ficar sem nenhum estilo.
+                  </p>
+                </aside>
+              </li>
+
+              <li class="steps__item" data-part>
+                <span class="steps__number">11</span>
+                <h3 class="steps__title">O <code class="inline-code">README.md</code></h3>
+                <p class="topic__text">Use o modelo de <a class="topic__link" href="#modelos">Modelos prontos</a>. Ele precisa ter:</p>
+                <ol class="topic__list">
+                  <li class="topic__list-item">o nome do projeto;</li>
+                  <li class="topic__list-item">a descrição do projeto e do que ele faz;</li>
+                  <li class="topic__list-item">as tecnologias e técnicas usadas;</li>
+                  <li class="topic__list-item">o link do GitHub Pages;</li>
+                  <li class="topic__list-item">planos de melhoria, quando o enunciado pedir.</li>
+                </ol>
+              </li>
+            </ol>
+          </section>
+
+          <!-- ===================== 03. FIGMA ===================== -->
+          <section class="topic" id="figma" aria-labelledby="figma-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 03</p>
+              <h2 class="topic__title" id="figma-title">Lendo o design no Figma</h2>
+              <p class="topic__lead">O Figma é onde a designer desenha a página. Tudo está lá, mas você precisa clicar para ver.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Primeiros passos</h3>
+              <ul class="topic__list">
+                <li class="topic__list-item">Se pedir login, crie uma conta gratuita.</li>
+                <li class="topic__list-item">Se o link estiver lotado, baixe o arquivo <code class="inline-code">.fig</code> e importe na sua conta: <strong>Drafts → Import</strong>.</li>
+                <li class="topic__list-item">Para não se distrair com os cursores de outros alunos: <strong>View → desmarque "Multiplayer cursors"</strong>.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Como pegar as medidas</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="Como pegar as medidas no Figma">
+                <table class="data-table__table">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">O que você quer</th>
+                      <th class="data-table__head-cell" scope="col">Como fazer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Tamanho, fonte e cor de um elemento</td>
+                      <td class="data-table__cell"><strong>Clique</strong> nele e veja o painel da direita</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Distância entre dois elementos</td>
+                      <td class="data-table__cell">Clique em um, <strong>segure <kbd class="inline-code">Alt</kbd></strong> e passe o mouse sobre o outro</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Distância até a borda da seção</td>
+                      <td class="data-table__cell">Clique no elemento, segure <kbd class="inline-code">Alt</kbd> e passe o mouse sobre a seção</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Os textos</td>
+                      <td class="data-table__cell">Clique duas vezes no texto e copie com <kbd class="inline-code">Ctrl + C</kbd></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Uma sugestão de nome para a classe</td>
+                      <td class="data-table__cell">Olhe o <strong>nome da camada</strong> no painel da esquerda</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <aside class="note note_type_success">
+                <p class="note__title">Os nomes das camadas dão a dica</p>
+                <p class="note__text">
+                  No projeto 5, as camadas se chamavam <code class="inline-code">lead</code>,
+                  <code class="inline-code">intro</code>, <code class="inline-code">__title</code>,
+                  <code class="inline-code">__subtitle</code>... Eram praticamente os nomes BEM prontos.
+                </p>
+              </aside>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Monte uma tabela de medidas antes de programar</h3>
+              <p class="topic__text">Para cada seção, anote as medidas de cada tamanho de tela. Exemplo da seção <code class="inline-code">lead</code> do projeto 5:</p>
+              <div class="data-table" tabindex="0" role="region" aria-label="Exemplo de tabela de medidas">
+                <table class="data-table__table data-table__table_wide">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Elemento</th>
+                      <th class="data-table__head-cell" scope="col">1280px</th>
+                      <th class="data-table__head-cell" scope="col">768px</th>
+                      <th class="data-table__head-cell" scope="col">320px</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Espaço acima da seção</td>
+                      <td class="data-table__cell">90px</td><td class="data-table__cell">90px</td><td class="data-table__cell">50px</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Título: fonte / linha</td>
+                      <td class="data-table__cell">96 / 100px</td><td class="data-table__cell">75 / 79px</td><td class="data-table__cell">40 / 44px</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Título → subtítulo</td>
+                      <td class="data-table__cell">32px</td><td class="data-table__cell">25px</td><td class="data-table__cell">16px</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Subtítulo: fonte / linha</td>
+                      <td class="data-table__cell">30 / 36px</td><td class="data-table__cell">30 / 36px</td><td class="data-table__cell">16 / 20px</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Subtítulo → imagem</td>
+                      <td class="data-table__cell">64px</td><td class="data-table__cell">30px</td><td class="data-table__cell">40px</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Imagem</td>
+                      <td class="data-table__cell">984×615</td><td class="data-table__cell">768×480</td><td class="data-table__cell">320×200</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="topic__text">Com a tabela pronta, o CSS fica quase "copiar e colar".</p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Convertendo a altura de linha</h3>
+              <p class="topic__text">O Figma mostra a altura da linha em pixels. No CSS, use um <strong>número decimal</strong>:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Fórmula</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">line-height = altura da linha ÷ tamanho da fonte
+
+Exemplo: fonte 96px, linha 100px
+100 ÷ 96 = 1.04   →   line-height: 1.04;</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Margens: use só uma direção</h3>
+              <p class="topic__text">
+                Decida usar <strong>sempre <code class="inline-code">margin-top</code></strong>, ou seja, o espaço até
+                o elemento de cima. Assim você nunca fica em dúvida sobre onde está o espaço.
+              </p>
+              <aside class="note note_type_warning">
+                <p class="note__title">Exceção</p>
+                <p class="note__text">
+                  Se o verificador pedir uma margem num elemento específico (já aconteceu: "valor incorreto para
+                  <code class="inline-code">margin-bottom</code> do <code class="inline-code">.reservation__title</code>"),
+                  siga o que ele pede.
+                </p>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ===================== 04. HTML ===================== -->
+          <section class="topic" id="html" aria-labelledby="html-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 04</p>
+              <h2 class="topic__title" id="html-title">HTML: estrutura e semântica</h2>
+              <p class="topic__lead">
+                "Semântica" quer dizer que a tag descreve o que o conteúdo <strong>é</strong>, não como ele parece.
+                Isso ajuda leitores de tela, o Google e os revisores.
+              </p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">A tag certa para cada coisa</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="Tags semânticas">
+                <table class="data-table__table data-table__table_wide">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Conteúdo</th>
+                      <th class="data-table__head-cell" scope="col">Tag certa</th>
+                      <th class="data-table__head-cell" scope="col">Evite</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Topo da página (logo, menu)</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;header&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;div class="header"&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Menu de navegação</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;nav&gt;</code></td>
+                      <td class="data-table__cell">Uma lista de links solta</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Conteúdo principal (só <strong>um</strong>)</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;main class="content"&gt;</code></td>
+                      <td class="data-table__cell">Dois <code class="inline-code">&lt;main&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Uma seção com título próprio</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;section&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;div&gt;</code> genérica</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Rodapé</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;footer&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;div class="footer"&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Título principal da página (só <strong>um</strong>)</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;h1&gt;</code></td>
+                      <td class="data-table__cell">Vários <code class="inline-code">&lt;h1&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Títulos de seção</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;h2&gt;</code>, depois <code class="inline-code">&lt;h3&gt;</code>...</td>
+                      <td class="data-table__cell">Pular níveis (<code class="inline-code">h1</code> → <code class="inline-code">h3</code>)</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Parágrafo de texto</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;p&gt;</code></td>
+                      <td class="data-table__cell">Texto solto dentro de <code class="inline-code">&lt;div&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Lista de itens parecidos (links, cards, vídeos)</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;ul&gt;</code> + <code class="inline-code">&lt;li&gt;</code></td>
+                      <td class="data-table__cell">Vários <code class="inline-code">&lt;div&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Citação</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;blockquote&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;p&gt;</code> com aspas</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Link</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;a href="..."&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;a&gt;</code> sem <code class="inline-code">href</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Botão de formulário</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;button type="submit"&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;div&gt;</code> ou <code class="inline-code">&lt;a&gt;</code> fazendo papel de botão</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Rótulo de campo</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;label for="id"&gt;</code></td>
+                      <td class="data-table__cell">Texto solto ao lado do campo</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Destacar parte de um texto</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;span class="..."&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;b&gt;</code>, <code class="inline-code">&lt;i&gt;</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Agrupar só para alinhar</td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;div&gt;</code></td>
+                      <td class="data-table__cell"><code class="inline-code">&lt;div&gt;</code> sem necessidade</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Proibidos pelo checklist: <code class="inline-code">&lt;b&gt;</code>, <code class="inline-code">&lt;i&gt;</code> e <code class="inline-code">&lt;br&gt;</code></h3>
+              <ul class="topic__list">
+                <li class="topic__list-item">No lugar de <code class="inline-code">&lt;b&gt;</code> e <code class="inline-code">&lt;i&gt;</code>: um <code class="inline-code">&lt;span&gt;</code> com classe, e o estilo no CSS.</li>
+                <li class="topic__list-item">No lugar de <code class="inline-code">&lt;br&gt;</code>: um <code class="inline-code">&lt;span&gt;</code> com <code class="inline-code">display: block;</code>, ou um <code class="inline-code">max-width</code> que faça o texto quebrar no lugar certo.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Hierarquia de títulos</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Exemplo</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">h1  De Pátria para Pátria          ← só um: o título da página
+  h2  Conheça um pouco mais...     ← o título de cada seção
+    h3  ...                        ← subtítulos dentro da seção</code></pre>
+              </figure>
+              <p class="topic__text">
+                Nunca pule níveis e nunca use um título só porque "a letra é grande". O tamanho se resolve no CSS.
+              </p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Imagens</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;img
+  class="lead__image"
+  src="./images/nome-da-imagem.jpg"
+  alt="Descrição do que a imagem mostra, em português"
+/&gt;</code></pre>
+              </figure>
+              <ul class="topic__list">
+                <li class="topic__list-item"><strong>Todo <code class="inline-code">&lt;img&gt;</code> precisa de <code class="inline-code">alt</code></strong>, no idioma da página.</li>
+                <li class="topic__list-item">O <code class="inline-code">alt</code> descreve o <strong>conteúdo</strong>: "Foto de uma cidade litorânea com um castelo", não "imagem1".</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Links</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;a class="nav__link" href="#recipes"&gt;Receitas&lt;/a&gt;
+&lt;a class="footer__link" href="https://www.instagram.com/" target="_blank"&gt;Instagram&lt;/a&gt;</code></pre>
+              </figure>
+              <ul class="topic__list">
+                <li class="topic__list-item"><strong>Todo link precisa de <code class="inline-code">href</code></strong> com um valor.</li>
+                <li class="topic__list-item"><strong>Link para uma seção da página:</strong> <code class="inline-code">href="#id-da-secao"</code>, e a seção precisa de <code class="inline-code">id="id-da-secao"</code>. O nome tem que ser <strong>idêntico</strong>.</li>
+                <li class="topic__list-item"><strong>Link externo:</strong> <code class="inline-code">target="_blank"</code> abre numa aba nova.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Formulários</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;form class="reservation__form form"&gt;
+  &lt;fieldset class="form__fieldset"&gt;
+    &lt;label class="form__label" for="name"&gt;Nome *&lt;/label&gt;
+    &lt;input
+      class="form__input"
+      type="text"
+      id="name"
+      name="name"
+      placeholder="Nome"
+      required
+    /&gt;
+  &lt;/fieldset&gt;
+  &lt;button class="form__button" type="submit"&gt;Enviar&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+              </figure>
+              <ul class="topic__list">
+                <li class="topic__list-item">O <code class="inline-code">for</code> do <code class="inline-code">&lt;label&gt;</code> tem que ser igual ao <code class="inline-code">id</code> do <code class="inline-code">&lt;input&gt;</code>.</li>
+                <li class="topic__list-item">Todo campo precisa de <code class="inline-code">name</code>.</li>
+                <li class="topic__list-item">Use o <code class="inline-code">type</code> certo: <code class="inline-code">text</code>, <code class="inline-code">email</code>, <code class="inline-code">number</code>, <code class="inline-code">datetime-local</code>, <code class="inline-code">checkbox</code>...</li>
+                <li class="topic__list-item"><code class="inline-code">required</code> torna o campo obrigatório.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Vídeos do YouTube</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;iframe
+  class="recipes__iframe"
+  src="https://www.youtube.com/embed/ID_DO_VIDEO"
+  title="Descrição do vídeo"
+  allowfullscreen
+&gt;&lt;/iframe&gt;</code></pre>
+              </figure>
+              <ul class="topic__list">
+                <li class="topic__list-item">Use o link <strong><code class="inline-code">/embed/</code></strong>, não o <code class="inline-code">watch?v=</code>.</li>
+                <li class="topic__list-item">Remova <code class="inline-code">frameborder</code>, <code class="inline-code">width</code> e <code class="inline-code">height</code> do código do YouTube. A borda e o tamanho vão no CSS.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">As metas obrigatórias</h3>
+              <p class="topic__text">O verificador da TripleTen reprova se faltar alguma destas dentro do <code class="inline-code">&lt;head&gt;</code>:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;meta charset="UTF-8" /&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+&lt;meta name="description" content="Resumo da página" /&gt;
+&lt;meta name="author" content="Felipe Leite" /&gt;
+&lt;meta name="keywords" content="palavra1, palavra2, palavra3" /&gt;</code></pre>
+              </figure>
+              <p class="topic__text">
+                E também: <code class="inline-code">&lt;html lang="pt-BR"&gt;</code>, um <code class="inline-code">&lt;title&gt;</code>
+                e <code class="inline-code">&lt;link rel="icon" href="./favicon.ico" /&gt;</code>.
+              </p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Comentários</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML e CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;!-- Comentário no HTML --&gt;
+
+/* Comentário no CSS */</code></pre>
+              </figure>
+              <p class="topic__text">
+                Atalho no VS Code: <kbd class="inline-code">Ctrl + /</kbd>. Antes de entregar,
+                <strong>apague os comentários desnecessários</strong>: o checklist cobra.
+              </p>
+            </div>
+          </section>
+
+          <!-- ===================== 05. BEM ===================== -->
+          <section class="topic" id="bem" aria-labelledby="bem-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 05</p>
+              <h2 class="topic__title" id="bem-title">BEM: como dar nomes e organizar arquivos</h2>
+              <p class="topic__lead">BEM é uma regra de nomes para as classes. Com ela, só de ler a classe você sabe onde ela fica e em qual arquivo está o estilo.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">As três peças</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="Bloco, elemento e modificador">
+                <table class="data-table__table data-table__table_wide">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Peça</th>
+                      <th class="data-table__head-cell" scope="col">O que é</th>
+                      <th class="data-table__head-cell" scope="col">Formato</th>
+                      <th class="data-table__head-cell" scope="col">Exemplo</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><strong>Bloco</strong></td>
+                      <td class="data-table__cell">Um componente independente</td>
+                      <td class="data-table__cell"><code class="inline-code">bloco</code></td>
+                      <td class="data-table__cell"><code class="inline-code">header</code>, <code class="inline-code">form</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><strong>Elemento</strong></td>
+                      <td class="data-table__cell">Uma parte do bloco, que não existe fora dele</td>
+                      <td class="data-table__cell"><code class="inline-code">bloco__elemento</code></td>
+                      <td class="data-table__cell"><code class="inline-code">header__title</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><strong>Modificador</strong></td>
+                      <td class="data-table__cell">Uma variação de um bloco ou elemento</td>
+                      <td class="data-table__cell"><code class="inline-code">bloco__elemento_chave_valor</code></td>
+                      <td class="data-table__cell"><code class="inline-code">form__label_type_checkbox</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ul class="topic__list">
+                <li class="topic__list-item">Elemento: <strong>dois underlines</strong> (<code class="inline-code">__</code>).</li>
+                <li class="topic__list-item">Modificador: <strong>um underline</strong> (<code class="inline-code">_</code>), no formato <code class="inline-code">_chave_valor</code>.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Regras de nomes</h3>
+              <ol class="topic__list">
+                <li class="topic__list-item"><strong>Só letras minúsculas</strong>, e hífen para separar palavras: <code class="inline-code">header__span-accent</code>.</li>
+                <li class="topic__list-item">
+                  <strong>Nada de números ou ordem no nome.</strong> Isto reprova o projeto:
+                  <code class="inline-code">card__title-1</code>, <code class="inline-code">card__title-one</code>,
+                  <code class="inline-code">card__first-title</code>. Use a mesma classe
+                  <code class="inline-code">card__title</code> em todos, e um modificador se algum for diferente.
+                </li>
+                <li class="topic__list-item">
+                  <strong>Elemento de elemento não existe.</strong> Mesmo com o HTML aninhado, o nome é sempre
+                  <code class="inline-code">bloco__elemento</code>: errado <code class="inline-code">footer__list__item</code>,
+                  certo <code class="inline-code">footer__list-item</code>.
+                </li>
+                <li class="topic__list-item"><strong>O nome diz o que é, não como parece:</strong> <code class="inline-code">header__title</code>, não <code class="inline-code">header__big-blue-text</code>.</li>
+                <li class="topic__list-item"><strong>Todo elemento estilizado tem classe.</strong> Não estilize por tag (<code class="inline-code">h1 { }</code>) nem por id (<code class="inline-code">#recipes { }</code>).</li>
+              </ol>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Modificador sempre junto da classe base</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;!-- errado: o modificador sozinho --&gt;
+&lt;label class="form__label_type_checkbox"&gt;
+
+&lt;!-- certo: a classe base + o modificador --&gt;
+&lt;label class="form__label form__label_type_checkbox"&gt;</code></pre>
+              </figure>
+              <p class="topic__text">E no CSS, o modificador tem <strong>só o que é diferente</strong>:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">blocks/form.css</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.form__label {
+  font-weight: 500;
+}
+
+.form__label_type_checkbox {
+  display: flex; /* só o que muda em relação ao .form__label */
+  gap: 12px;
+}</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Mix: um elemento que também é bloco</h3>
+              <p class="topic__text">Quando um bloco (ex.: <code class="inline-code">form</code>) fica dentro de outro (ex.: <code class="inline-code">reservation</code>):</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">HTML</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">&lt;form class="reservation__form form"&gt;</code></pre>
+              </figure>
+              <ul class="topic__list">
+                <li class="topic__list-item"><code class="inline-code">form</code> cuida da <strong>aparência</strong>: largura máxima, cores, espaçamento interno.</li>
+                <li class="topic__list-item"><code class="inline-code">reservation__form</code> cuida da <strong>posição</strong> dentro da seção: as margens.</li>
+              </ul>
+              <aside class="note">
+                <p class="note__title">Regra da "geometria externa"</p>
+                <p class="note__text">
+                  Um bloco não define as próprias margens externas: quem define é o elemento do bloco pai. Assim o
+                  bloco <code class="inline-code">form</code> pode ser reaproveitado em outro lugar com outras margens.
+                </p>
+              </aside>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Seletores</h3>
+              <ul class="topic__list">
+                <li class="topic__list-item">No máximo <strong>dois seletores aninhados</strong>: <code class="inline-code">.form__checkbox:checked</code> está ok.</li>
+                <li class="topic__list-item">Prefira <strong>uma classe só</strong> por regra: <code class="inline-code">.lead__title { }</code>.</li>
+                <li class="topic__list-item"><strong>Nunca use <code class="inline-code">!important</code>.</strong></li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Estrutura de arquivos BEM Flat</h3>
+              <p class="topic__text"><strong>Flat</strong> quer dizer: um arquivo por bloco, todos direto em <code class="inline-code">blocks/</code>, sem subpastas.</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">blocks/</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">blocks/
+├── page.css      ← .page e .page__*
+├── header.css    ← .header, .header__*, .header__*_*
+├── form.css      ← .form, .form__*, .form__*_*
+└── footer.css</code></pre>
+              </figure>
+              <p class="topic__text"><strong>Como saber onde uma regra vai:</strong> olhe o nome <strong>antes do <code class="inline-code">__</code></strong>. É o nome do bloco e, portanto, o nome do arquivo.</p>
+              <div class="data-table" tabindex="0" role="region" aria-label="Onde cada regra vai">
+                <table class="data-table__table">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">A classe começa com...</th>
+                      <th class="data-table__head-cell" scope="col">Vai para</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">.header</code>, <code class="inline-code">.header__logo</code></td>
+                      <td class="data-table__cell"><code class="inline-code">blocks/header.css</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">.form</code>, <code class="inline-code">.form__input</code>, <code class="inline-code">.form__label_type_checkbox</code></td>
+                      <td class="data-table__cell"><code class="inline-code">blocks/form.css</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">.reservation__form</code></td>
+                      <td class="data-table__cell"><code class="inline-code">blocks/reservation.css</code> (é elemento de <code class="inline-code">reservation</code>)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <ul class="topic__list">
+                <li class="topic__list-item">Os <strong>media queries</strong> ficam dentro do arquivo do bloco, no final.</li>
+                <li class="topic__list-item">Um bloco <strong>sem estilos</strong> (como o <code class="inline-code">content</code> do <code class="inline-code">&lt;main&gt;</code>) não precisa de arquivo.</li>
+              </ul>
+            </div>
+          </section>
+
+          <!-- ===================== 06. CSS ===================== -->
+          <section class="topic" id="css" aria-labelledby="css-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 06</p>
+              <h2 class="topic__title" id="css-title">CSS: regras de ouro</h2>
+              <p class="topic__lead">Doze regras que evitam a maior parte dos problemas e dos apontamentos dos revisores.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">1. Coloque o que é comum no <code class="inline-code">.page</code> e deixe herdar</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">blocks/page.css</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.page {
+  font-family: "Inter", Arial, sans-serif;
+  color: #000;
+  font-size: 16px;
+  line-height: 1.25;
+}</code></pre>
+              </figure>
+              <p class="topic__text">Todos os textos herdam essas propriedades. Nos outros blocos, escreva <strong>só o que é diferente</strong>.</p>
+              <div class="data-table" tabindex="0" role="region" aria-label="O que é herdado">
+                <table class="data-table__table">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">É herdado</th>
+                      <th class="data-table__head-cell" scope="col">Não é herdado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">color</code>, <code class="inline-code">font-family</code>, <code class="inline-code">font-size</code>, <code class="inline-code">font-weight</code>, <code class="inline-code">line-height</code>, <code class="inline-code">text-align</code></td>
+                      <td class="data-table__cell"><code class="inline-code">margin</code>, <code class="inline-code">padding</code>, <code class="inline-code">background</code>, <code class="inline-code">border</code>, <code class="inline-code">width</code></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">2. Sempre tenha fontes alternativas</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">font-family: "Inter", Arial, sans-serif;             /* sem serifa */
+font-family: "Noto Serif", "Times New Roman", serif; /* com serifa */</code></pre>
+              </figure>
+              <p class="topic__text">Se a primeira fonte não carregar, o navegador usa a próxima da lista.</p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">3. Zere os estilos padrão do navegador</h3>
+              <p class="topic__text">
+                <code class="inline-code">h1</code>, <code class="inline-code">h2</code>, <code class="inline-code">p</code>,
+                <code class="inline-code">ul</code> e <code class="inline-code">blockquote</code> vêm com margens. Listas vêm com
+                recuo e marcadores. Links vêm azuis e sublinhados.
+              </p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.lead__title {
+  margin: 0; /* zera todas as margens */
+}
+
+.lead__subtitle {
+  margin: 32px 0 0; /* só em cima: 32px */
+}
+
+.nav__links {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* tira os marcadores da lista */
+}
+
+.nav__link {
+  color: #000;
+  text-decoration: none; /* tira o sublinhado */
+}</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">4. Os atalhos de <code class="inline-code">margin</code> e <code class="inline-code">padding</code></h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">margin: 10px;                /* os 4 lados */
+margin: 10px 20px;           /* cima e baixo | direita e esquerda */
+margin: 10px 20px 30px;      /* cima | direita e esquerda | baixo */
+margin: 10px 20px 30px 40px; /* cima | direita | baixo | esquerda (sentido horário) */
+margin: 0 auto;              /* centraliza na horizontal (precisa de largura máxima) */</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">5. O que o checklist proíbe</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="Proibições do checklist">
+                <table class="data-table__table">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Não faça</th>
+                      <th class="data-table__head-cell" scope="col">Faça no lugar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">margin</code> negativa</td>
+                      <td class="data-table__cell">Reorganize o padding ou a estrutura</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">height</code> fixa em textos</td>
+                      <td class="data-table__cell">Deixe a altura crescer com o texto</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">width</code> fixa em textos</td>
+                      <td class="data-table__cell"><code class="inline-code">max-width</code></td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">position: absolute</code> para montar o layout</td>
+                      <td class="data-table__cell">Flexbox. Absolute só para decoração, quando o roteiro permitir</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell"><code class="inline-code">!important</code></td>
+                      <td class="data-table__cell">Um seletor mais específico ou a ordem certa</td>
+                    </tr>
+                    <tr class="data-table__row">
+                      <td class="data-table__cell">Estilizar por tag ou id</td>
+                      <td class="data-table__cell">Uma classe BEM</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">6. <code class="inline-code">width</code> ou <code class="inline-code">max-width</code>?</h3>
+              <ul class="topic__list">
+                <li class="topic__list-item"><code class="inline-code">width: 500px</code>: <strong>sempre</strong> 500px. Em tela pequena, vaza.</li>
+                <li class="topic__list-item"><code class="inline-code">max-width: 500px</code>: <strong>até</strong> 500px. Em tela pequena, encolhe.</li>
+              </ul>
+              <p class="topic__text">
+                Para textos e contêineres, use quase sempre <code class="inline-code">max-width</code>. A exceção comum é
+                <code class="inline-code">width: 100%</code>, para uma imagem ocupar toda a largura do pai.
+              </p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">7. Flexbox: o básico que resolve 90% dos casos</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.bloco {
+  display: flex;
+  flex-direction: row;            /* lado a lado (padrão); column = um embaixo do outro */
+  justify-content: space-between; /* distribuição no eixo principal */
+  align-items: center;            /* alinhamento no outro eixo */
+  gap: 20px;                      /* espaço entre os filhos */
+}</code></pre>
+              </figure>
+              <div class="data-table" tabindex="0" role="region" aria-label="Receitas de flexbox">
+                <table class="data-table__table">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Quero...</th>
+                      <th class="data-table__head-cell" scope="col">Use</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row"><td class="data-table__cell">Itens lado a lado</td><td class="data-table__cell"><code class="inline-code">display: flex</code></td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Itens um embaixo do outro</td><td class="data-table__cell"><code class="inline-code">flex-direction: column</code></td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Um à esquerda, outro à direita</td><td class="data-table__cell"><code class="inline-code">justify-content: space-between</code></td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Tudo centralizado</td><td class="data-table__cell"><code class="inline-code">justify-content: center</code> + <code class="inline-code">align-items: center</code></td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Empurrar um item para o fim</td><td class="data-table__cell"><code class="inline-code">margin-top: auto</code> (coluna) ou <code class="inline-code">margin-left: auto</code> (linha)</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Espaço igual entre os itens</td><td class="data-table__cell"><code class="inline-code">gap</code></td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Itens descem de linha quando não cabem</td><td class="data-table__cell"><code class="inline-code">flex-wrap: wrap</code></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">8. <code class="inline-code">position</code>: quando usar</h3>
+              <ul class="topic__list">
+                <li class="topic__list-item"><code class="inline-code">position: relative</code> no pai e <code class="inline-code">position: absolute</code> no filho: o filho é posicionado em relação ao pai, com <code class="inline-code">top</code>, <code class="inline-code">right</code>, <code class="inline-code">bottom</code> e <code class="inline-code">left</code>.</li>
+                <li class="topic__list-item"><code class="inline-code">z-index</code> decide quem fica na frente (maior = mais na frente). <strong>Só funciona em elementos com <code class="inline-code">position</code>.</strong></li>
+                <li class="topic__list-item"><code class="inline-code">overflow: hidden</code> no pai corta o que sair dele, como um círculo decorativo.</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">9. <code class="inline-code">box-sizing: border-box</code> em campos</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.form__input {
+  width: 100%;
+  height: 60px;
+  padding: 0 15px;
+  box-sizing: border-box; /* o padding fica DENTRO dos 60px e dos 100% */
+}</code></pre>
+              </figure>
+              <p class="topic__text">Sem isso, o padding e a borda são <strong>somados</strong> ao tamanho, e o campo fica maior que o design.</p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">10. Imagem de fundo</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.recipes {
+  background: #0a2750 url("../images/fundo.svg") center / cover no-repeat;
+}</code></pre>
+              </figure>
+              <p class="topic__text">
+                Na ordem: cor, imagem, posição (<code class="inline-code">center</code>), tamanho
+                (<code class="inline-code">/ cover</code>) e <code class="inline-code">no-repeat</code>. O caminho começa
+                com <code class="inline-code">../</code> porque o CSS está em <code class="inline-code">blocks/</code>.
+              </p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">11. Estados de interação</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.nav__link:hover { /* mouse em cima */
+  color: #2f80ed;
+}
+
+.footer__link:hover,
+.footer__link:focus { /* navegação pelo teclado (Tab) */
+  color: #c1c1c1;
+}
+
+.form__button:hover {
+  opacity: 0.7;
+}</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">12. Copie do Figma só fontes e cores</h3>
+              <p class="topic__text">
+                As únicas coisas que você copia <strong>igualzinho</strong> do Figma são tamanhos de fonte, pesos e
+                cores. Posições e espaçamentos você constrói com flexbox, <code class="inline-code">margin</code> e
+                <code class="inline-code">padding</code>. O Figma costuma sugerir <code class="inline-code">position: absolute</code>
+                para tudo: ignore.
+              </p>
+            </div>
+          </section>
+
+          <!-- ===================== 07. RESPONSIVIDADE ===================== -->
+          <section class="topic" id="responsividade" aria-labelledby="resp-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 07</p>
+              <h2 class="topic__title" id="resp-title">Responsividade (media queries)</h2>
+              <p class="topic__lead">Fazer a página funcionar bem do celular de 320px até telas grandes.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">A estratégia: desktop primeiro</h3>
+              <ol class="topic__list">
+                <li class="topic__list-item">Escreva tudo para a <strong>maior tela</strong> do design (ex.: 1280px), <strong>sem media query</strong>.</li>
+                <li class="topic__list-item">Teste. Não pode haver rolagem horizontal.</li>
+                <li class="topic__list-item">Adicione <code class="inline-code">@media (max-width: 1024px)</code> com <strong>só o que muda</strong> no tablet.</li>
+                <li class="topic__list-item">Adicione <code class="inline-code">@media (max-width: 544px)</code> com <strong>só o que muda</strong> no celular.</li>
+              </ol>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">blocks/lead.css</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.lead__title {
+  font-size: 96px; /* desktop: vale sempre */
+}
+
+@media (max-width: 1024px) {
+  .lead__title {
+    font-size: 75px; /* tablet: sobrescreve */
+  }
+}
+
+@media (max-width: 544px) {
+  .lead__title {
+    font-size: 40px; /* celular: sobrescreve de novo */
+  }
+}</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Como o <code class="inline-code">max-width</code> funciona no media query</h3>
+              <p class="topic__text">
+                <code class="inline-code">@media (max-width: 1024px)</code> quer dizer "aplique quando a tela tiver
+                <strong>até</strong> 1024px". Numa tela de 320px, os <strong>dois</strong> media queries valem. Como o de
+                544 vem depois, ele vence quando os dois definem a mesma propriedade. Por isso:
+              </p>
+              <ul class="topic__list">
+                <li class="topic__list-item">o celular <strong>herda</strong> tudo o que foi definido para o tablet;</li>
+                <li class="topic__list-item">você <strong>não repete</strong> no celular o que já está no tablet. O checklist cobra: "os mesmos estilos não são duplicados em diferentes media queries".</li>
+              </ul>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Escolhendo os pontos de interrupção</h3>
+              <p class="topic__text">Se o enunciado não der, use o <strong>meio</strong> entre os tamanhos do design:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Conta</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">entre 320 e 768   →  (320 + 768) ÷ 2  = 544
+entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">A ordem dentro do arquivo do bloco</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">blocks/bloco.css</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">/* 1. estilos do desktop */
+.bloco { }
+.bloco__elemento { }
+
+/* 2. tablet */
+@media (max-width: 1024px) { }
+
+/* 3. celular */
+@media (max-width: 544px) { }</code></pre>
+              </figure>
+              <p class="topic__text"><strong>A ordem importa:</strong> do maior para o menor.</p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Técnicas que deixam tudo responsivo "de graça"</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="Técnicas responsivas">
+                <table class="data-table__table">
+                  <thead>
+                    <tr class="data-table__row">
+                      <th class="data-table__head-cell" scope="col">Técnica</th>
+                      <th class="data-table__head-cell" scope="col">Para que serve</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">max-width</code> em vez de <code class="inline-code">width</code></td><td class="data-table__cell">O elemento encolhe em telas menores</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">width: 100%</code> em imagens</td><td class="data-table__cell">A imagem acompanha o contêiner</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">aspect-ratio: 16 / 10</code></td><td class="data-table__cell">A altura acompanha a largura, na proporção certa</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">object-fit: cover</code></td><td class="data-table__cell">A imagem preenche o espaço sem distorcer</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell">Flexbox com <code class="inline-code">gap</code></td><td class="data-table__cell">Os itens se reorganizam sem contas</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">flex-wrap: wrap</code></td><td class="data-table__cell">Os itens descem de linha quando não cabem</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">%</code> e <code class="inline-code">fr</code></td><td class="data-table__cell">Larguras proporcionais</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">O trio da imagem responsiva</h3>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">CSS</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.lead__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10; /* largura ÷ altura do design: 984 ÷ 615 = 1,6 = 16/10 */
+  object-fit: cover;
+}</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Centralizar o conteúdo com largura máxima</h3>
+              <p class="topic__text">O fundo vai de ponta a ponta, mas o conteúdo para em 1280px e fica no meio:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">blocks/page.css</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1280px);
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: #2a2c2f;
+}</code></pre>
+              </figure>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Como testar</h3>
+              <ol class="topic__list">
+                <li class="topic__list-item">Abra a página no Chrome e aperte <kbd class="inline-code">F12</kbd> (DevTools).</li>
+                <li class="topic__list-item">Aperte <kbd class="inline-code">Ctrl + Shift + M</kbd> (modo dispositivo).</li>
+                <li class="topic__list-item">No topo, escolha <strong>Responsive</strong> e digite a largura.</li>
+                <li class="topic__list-item">Teste as larguras do design (ex.: 1280, 768, 320) <strong>e</strong> as intermediárias (ex.: 470, 665, 999, 1100, 1500).</li>
+                <li class="topic__list-item">Em cada uma, procure: <strong>barra de rolagem horizontal</strong>, texto vazando do bloco e elementos sobrepostos.</li>
+                <li class="topic__list-item">Teste também no <strong>Firefox</strong>.</li>
+              </ol>
+              <aside class="note">
+                <p class="note__title">Tolerância do checklist</p>
+                <p class="note__text">Até 30px de diferença em 1280px. Até 10px em 768px e 320px.</p>
+              </aside>
+            </div>
+          </section>
+
+          <!-- ===================== 08. GIT ===================== -->
+          <section class="topic" id="git" aria-labelledby="git-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 08</p>
+              <h2 class="topic__title" id="git-title">Git e GitHub Pages</h2>
+              <p class="topic__lead">Salvar o trabalho, enviar para o GitHub e publicar o site.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">O ciclo de trabalho</h3>
+              <p class="topic__text"><code class="inline-code">git status</code> mostra o que mudou:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Terminal</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">git status</code></pre>
+              </figure>
+              <p class="topic__text"><code class="inline-code">git add .</code> prepara <strong>todas</strong> as mudanças para o commit:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Terminal</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">git add .</code></pre>
+              </figure>
+              <p class="topic__text"><code class="inline-code">git commit</code> salva as mudanças no histórico, com uma descrição:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Terminal</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">git commit -m "Adiciona a seção de receitas"</code></pre>
+              </figure>
+              <p class="topic__text"><code class="inline-code">git push</code> envia para o GitHub:</p>
+              <figure class="code">
+                <figcaption class="code__header">
+                  <span class="code__label">Terminal</span>
+                  <button class="code__copy" type="button">Copiar</button>
+                </figcaption>
+                <pre class="code__pre"><code class="code__content">git push origin main</code></pre>
+              </figure>
+              <aside class="note note_type_warning">
+                <p class="note__title">O commit fica só no seu computador até o push</p>
+                <p class="note__text">
+                  Já aconteceu de o projeto estar commitado mas não enviado, e o GitHub Pages mostrar a versão antiga.
+                  Depois do push, confira se os arquivos aparecem no GitHub.
+                </p>
+              </aside>
+              <p class="topic__text">
+                <strong>Boas mensagens de commit</strong> são curtas e dizem o que foi feito: "Adiciona formulário de
+                reserva", "Corrige espaçamento do rodapé". Evite "ajustes" ou "update".
+              </p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">O primeiro push num computador</h3>
+              <p class="topic__text">
+                Na primeira vez, abre uma janela de login do GitHub. Escolha <strong>"Sign in with your browser"</strong>
+                e autorize. O Windows guarda o acesso para os próximos.
+              </p>
+            </div>
+
+            <div class="topic__part" data-part>
+              <h3 class="topic__subtitle">Ativando o GitHub Pages</h3>
+              <ol class="topic__list">
+                <li class="topic__list-item">No GitHub, abra o repositório e vá em <strong>Settings → Pages</strong>.</li>
+                <li class="topic__list-item">Em <strong>Branch</strong>, escolha <code class="inline-code">main</code> e <code class="inline-code">/ (root)</code>, e clique em <strong>Save</strong>.</li>
+                <li class="topic__list-item">Em 1 a 2 minutos, o site fica em <code class="inline-code">https://8felps8.github.io/NOME_DO_REPOSITORIO/</code>.</li>
+                <li class="topic__list-item">Coloque esse link no README.</li>
+              </ol>
+              <p class="topic__text">
+                Depois de cada push, o site se atualiza sozinho em alguns minutos. Se aparecer a versão antiga,
+                recarregue com <kbd class="inline-code">Ctrl + F5</kbd>.
+              </p>
+            </div>
+          </section>
+
+          <!-- ===================== 09. CHECKLIST ===================== -->
+          <section class="topic" id="checklist" aria-labelledby="checklist-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 09</p>
+              <h2 class="topic__title" id="checklist-title">Checklist antes de entregar</h2>
+              <p class="topic__lead">
+                Marque cada item conforme conferir. O progresso fica salvo neste navegador, então você pode fechar a
+                página e voltar depois.
+              </p>
+            </header>
+
+            <div class="checklist">
+              <div class="checklist__summary">
+                <p class="checklist__progress-text">0 de 0 itens</p>
+                <div
+                  class="checklist__bar"
+                  role="progressbar"
+                  aria-label="Progresso do checklist"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="0"
+                >
+                  <div class="checklist__fill"></div>
+                </div>
+                <button class="checklist__reset" type="button">Começar projeto novo</button>
+              </div>
+
+              <div class="checklist__group" data-part>
+                <h3 class="checklist__group-title">Estrutura</h3>
+                <ul class="checklist__list">
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-1" /><span class="checklist__text"><code class="inline-code">blocks/</code> com um arquivo por bloco (BEM Flat)</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-2" /><span class="checklist__text"><code class="inline-code">images/</code> com todas as imagens, comprimidas</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-3" /><span class="checklist__text"><code class="inline-code">pages/index.css</code> só com <code class="inline-code">@import</code></span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-4" /><span class="checklist__text"><code class="inline-code">vendor/normalize.css</code> (e <code class="inline-code">fonts.css</code> + <code class="inline-code">fonts/</code>, se houver fontes locais)</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-5" /><span class="checklist__text">Só os arquivos de fonte que são usados</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-6" /><span class="checklist__text"><code class="inline-code">favicon.ico</code>, <code class="inline-code">index.html</code> e <code class="inline-code">README.md</code> na raiz</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-7" /><span class="checklist__text"><code class="inline-code">.editorconfig</code>, <code class="inline-code">.gitignore</code> (com <code class="inline-code">.DS_Store</code>) e <code class="inline-code">.prettierignore</code> (com <code class="inline-code">vendor/normalize.css</code>)</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-8" /><span class="checklist__text">Normalize importado primeiro e <code class="inline-code">fonts.css</code> logo depois</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-est-9" /><span class="checklist__text">Todo bloco com estilos tem seu <code class="inline-code">@import</code> no <code class="inline-code">index.css</code></span></label></li>
+                </ul>
+              </div>
+
+              <div class="checklist__group" data-part>
+                <h3 class="checklist__group-title">HTML</h3>
+                <ul class="checklist__list">
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-1" /><span class="checklist__text"><code class="inline-code">lang="pt-BR"</code>, <code class="inline-code">&lt;title&gt;</code> e as metas <code class="inline-code">charset</code>, <code class="inline-code">viewport</code>, <code class="inline-code">description</code>, <code class="inline-code">author</code> e <code class="inline-code">keywords</code></span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-2" /><span class="checklist__text">Links do favicon (<code class="inline-code">rel="icon"</code>) e do CSS (<code class="inline-code">./pages/index.css</code>)</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-3" /><span class="checklist__text"><code class="inline-code">div.page</code> com <code class="inline-code">header</code>, <code class="inline-code">main.content</code> e <code class="inline-code">footer</code> como filhos diretos</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-4" /><span class="checklist__text">Um único <code class="inline-code">&lt;h1&gt;</code>, títulos sem pular níveis</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-5" /><span class="checklist__text">Textos em <code class="inline-code">&lt;p&gt;</code>, listas em <code class="inline-code">&lt;ul&gt;</code> e <code class="inline-code">&lt;li&gt;</code></span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-6" /><span class="checklist__text">Sem <code class="inline-code">&lt;b&gt;</code>, <code class="inline-code">&lt;i&gt;</code> e <code class="inline-code">&lt;br&gt;</code></span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-7" /><span class="checklist__text">Todo <code class="inline-code">&lt;img&gt;</code> com <code class="inline-code">alt</code> descritivo em português</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-8" /><span class="checklist__text">Todo <code class="inline-code">&lt;a&gt;</code> com <code class="inline-code">href</code>, e cada <code class="inline-code">#id</code> dos links existe na página</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-9" /><span class="checklist__text">Sem <code class="inline-code">&lt;div&gt;</code> desnecessárias</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-10" /><span class="checklist__text">Passou sem erros no validador: <strong>validator.w3.org</strong> → "Validate by Direct Input"</span></label></li>
+                </ul>
+              </div>
+
+              <div class="checklist__group" data-part>
+                <h3 class="checklist__group-title">BEM</h3>
+                <ul class="checklist__list">
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-bem-1" /><span class="checklist__text">Todo elemento estilizado tem classe</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-bem-2" /><span class="checklist__text">Nenhuma classe com números ou ordem (<code class="inline-code">-1</code>, <code class="inline-code">-one</code>, <code class="inline-code">first-</code>)</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-bem-3" /><span class="checklist__text">Nenhum modificador sozinho no <code class="inline-code">class</code></span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-bem-4" /><span class="checklist__text">Modificadores só com o que muda</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-bem-5" /><span class="checklist__text">No máximo dois seletores aninhados</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-bem-6" /><span class="checklist__text">Cada arquivo de bloco só tem os estilos daquele bloco</span></label></li>
+                </ul>
+              </div>
+
+              <div class="checklist__group" data-part>
+                <h3 class="checklist__group-title">CSS</h3>
+                <ul class="checklist__list">
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-1" /><span class="checklist__text">Fontes, tamanhos, pesos e cores iguais ao design</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-2" /><span class="checklist__text">Toda <code class="inline-code">font-family</code> tem alternativas</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-3" /><span class="checklist__text"><code class="inline-code">line-height</code> em decimal</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-4" /><span class="checklist__text">Sem <code class="inline-code">!important</code> e sem margem negativa</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-5" /><span class="checklist__text">Textos sem altura fixa</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-6" /><span class="checklist__text"><code class="inline-code">position: absolute</code> só onde o roteiro permite</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-7" /><span class="checklist__text">Fundo cobrindo a página inteira, sem bordas brancas</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-8" /><span class="checklist__text">Conteúdo centralizado, com a largura máxima do design</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-9" /><span class="checklist__text">Estados <code class="inline-code">hover</code> (e <code class="inline-code">focus</code>, se pedido) funcionando</span></label></li>
+                </ul>
+              </div>
+
+              <div class="checklist__group" data-part>
+                <h3 class="checklist__group-title">Responsividade (se o projeto pedir)</h3>
+                <ul class="checklist__list">
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-resp-1" /><span class="checklist__text">Igual ao design em todas as larguras do Figma</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-resp-2" /><span class="checklist__text">Sem rolagem horizontal em nenhuma largura intermediária</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-resp-3" /><span class="checklist__text">Nenhum estilo repetido entre media queries</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-resp-4" /><span class="checklist__text">Testado no Chrome e no Firefox</span></label></li>
+                </ul>
+              </div>
+
+              <div class="checklist__group" data-part>
+                <h3 class="checklist__group-title">Entrega</h3>
+                <ul class="checklist__list">
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-ent-1" /><span class="checklist__text">Comentários desnecessários removidos</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-ent-2" /><span class="checklist__text">Código formatado (<kbd class="inline-code">Shift + Alt + F</kbd> ou Prettier ao salvar)</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-ent-3" /><span class="checklist__text">README com nome, descrição, tecnologias e link do GitHub Pages</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-ent-4" /><span class="checklist__text">Commit <strong>e push</strong> feitos, arquivos visíveis no GitHub</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-ent-5" /><span class="checklist__text">GitHub Pages ativo e mostrando a versão nova</span></label></li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================== 10. ERROS ===================== -->
+          <section class="topic" id="erros" aria-labelledby="erros-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 10</p>
+              <h2 class="topic__title" id="erros-title">Erros que já aconteceram (e como resolver)</h2>
+              <p class="topic__lead">Clique num sintoma para ver a causa e a solução.</p>
+            </header>
+
+            <div class="accordion">
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">A página aparece sem nenhum estilo</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">Os arquivos dos blocos foram criados com o nome da classe (<code class="inline-code">.page</code>) em vez do nome do arquivo (<code class="inline-code">page.css</code>).</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Renomeie com <kbd class="inline-code">F2</kbd>: sem ponto no início e com <code class="inline-code">.css</code> no final.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Um bloco ficou sem estilo</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">Falta o <code class="inline-code">@import</code> dele no <code class="inline-code">index.css</code>, ou o caminho está errado.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Confira a linha no <code class="inline-code">pages/index.css</code> e se o caminho começa com <code class="inline-code">../blocks/</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Um fundo aparece cortado no lugar errado, ou o espaçamento fica em dobro</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">Uma <code class="inline-code">&lt;section&gt;</code> dentro de outra com a mesma classe: as duas recebem o mesmo padding e o mesmo fundo.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Apague a tag duplicada e o fechamento dela.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">O ícone da aba não aparece</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text"><code class="inline-code">rel="favicon"</code>, que não existe.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Use <code class="inline-code">rel="icon"</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Verificador: "deve ter um atributo id com um valor não vazio"</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">Um link como <code class="inline-code">href="#reservation"</code> não tem destino na página.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Acrescente <code class="inline-code">id="reservation"</code> na seção correspondente.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Verificador: "O elemento &lt;div&gt; com a classe page está ausente"</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">A classe <code class="inline-code">page</code> estava no <code class="inline-code">&lt;body&gt;</code>.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Use uma <code class="inline-code">&lt;div class="page"&gt;</code> dentro do <code class="inline-code">&lt;body&gt;</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Verificador: "&lt;header&gt; / &lt;main&gt; / &lt;footer&gt; deve ser filha de div com a classe page"</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">Havia uma <code class="inline-code">&lt;div&gt;</code> entre a <code class="inline-code">div.page</code> e essas tags.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Deixe <code class="inline-code">header</code>, <code class="inline-code">main</code> e <code class="inline-code">footer</code> como filhos <strong>diretos</strong> da <code class="inline-code">div.page</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Verificador: "A tag &lt;main&gt; deve receber a classe .content"</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">O <code class="inline-code">&lt;main&gt;</code> estava sem classe.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Use <code class="inline-code">&lt;main class="content"&gt;</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Verificador: "deve incluir tags &lt;meta&gt; para autor, descrição e palavras-chave"</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">Faltava a meta <code class="inline-code">keywords</code>.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Inclua as três: <code class="inline-code">author</code>, <code class="inline-code">description</code> e <code class="inline-code">keywords</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">Verificador: "valor incorreto para margin-bottom do seletor X"</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">O espaço estava como <code class="inline-code">margin-top</code> no elemento de baixo. Na tela fica igual, mas o verificador confere a propriedade.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Coloque a margem no elemento e na propriedade que o verificador indicar.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">O GitHub Pages mostra a versão antiga</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">O commit foi feito, mas sem push.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Rode <code class="inline-code">git push origin main</code>, espere 1 a 2 minutos e recarregue o site com <kbd class="inline-code">Ctrl + F5</kbd>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">O push pede login e falha</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">É a primeira vez enviando deste computador e a janela de login foi fechada.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Rode o push de novo e faça login pelo navegador quando a janela do GitHub abrir.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">A caixa de seleção não aceita border-radius</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">A caixa nativa do navegador ignora a maior parte dos estilos.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Use <code class="inline-code">appearance: none;</code> e estilize você mesmo o estado <code class="inline-code">:checked</code>.</p>
+                </div>
+              </details>
+
+              <details class="accordion__item" data-part>
+                <summary class="accordion__summary">
+                  <span class="accordion__symptom">O texto quebra no lugar errado</span>
+                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+                </summary>
+                <div class="accordion__body">
+                  <p class="accordion__label">Causa</p>
+                  <p class="accordion__text">A largura disponível para o texto está sobrando ou faltando.</p>
+                  <p class="accordion__label">Solução</p>
+                  <p class="accordion__text">Ajuste o <code class="inline-code">max-width</code> do texto. Nada de <code class="inline-code">&lt;br&gt;</code>.</p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- ===================== 11. MODELOS ===================== -->
+          <section class="topic" id="modelos" aria-labelledby="modelos-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 11</p>
+              <h2 class="topic__title" id="modelos-title">Modelos prontos para copiar</h2>
+              <p class="topic__lead">Escolha o arquivo na aba e use o botão "Copiar". Troque os textos de exemplo pelos do seu projeto.</p>
+            </header>
+
+            <div class="topic__part" data-part>
+              <div class="tabs">
+                <div class="tabs__list" role="tablist" aria-label="Arquivos modelo">
+                  <button class="tabs__button" type="button" role="tab" id="tab-html" aria-controls="panel-html">index.html</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-index-css" aria-controls="panel-index-css">pages/index.css</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-fonts" aria-controls="panel-fonts">vendor/fonts.css</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-page" aria-controls="panel-page">blocks/page.css</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-block" aria-controls="panel-block">Bloco</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-readme" aria-controls="panel-readme">README.md</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-editorconfig" aria-controls="panel-editorconfig">.editorconfig</button>
+                  <button class="tabs__button" type="button" role="tab" id="tab-ignore" aria-controls="panel-ignore">.gitignore e .prettierignore</button>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-html" aria-labelledby="tab-html" tabindex="0">
+                  <p class="topic__text">
+                    O esqueleto com tudo o que o verificador exige. Se usar <strong>Google Fonts</strong>, acrescente os
+                    <code class="inline-code">&lt;link&gt;</code> do Google Fonts no <code class="inline-code">&lt;head&gt;</code>,
+                    antes do <code class="inline-code">&lt;title&gt;</code>.
+                  </p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">index.html</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;meta name="description" content="Resumo da página em uma frase" /&gt;
+    &lt;meta name="author" content="Felipe Leite" /&gt;
+    &lt;meta name="keywords" content="palavra1, palavra2, palavra3" /&gt;
+    &lt;link rel="stylesheet" href="./pages/index.css" /&gt;
+    &lt;link rel="icon" href="./favicon.ico" /&gt;
+    &lt;title&gt;Título da página&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div class="page"&gt;
+      &lt;header class="header"&gt;
+        &lt;!-- logo e navegação --&gt;
+      &lt;/header&gt;
+      &lt;main class="content"&gt;
+        &lt;section class="nome-da-secao" id="nome-da-secao"&gt;
+          &lt;h2 class="nome-da-secao__title"&gt;Título da seção&lt;/h2&gt;
+        &lt;/section&gt;
+      &lt;/main&gt;
+      &lt;footer class="footer"&gt;
+        &lt;p class="footer__copyright"&gt;© 2026 Felipe Leite&lt;/p&gt;
+      &lt;/footer&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                  </figure>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-index-css" aria-labelledby="tab-index-css" tabindex="0" hidden>
+                  <p class="topic__text">Só <code class="inline-code">@import</code>: normalize primeiro, fontes depois, e um import por bloco.</p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">pages/index.css</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">@import url("../vendor/normalize.css");
+@import url("../vendor/fonts.css");
+@import url("../blocks/page.css");
+@import url("../blocks/header.css");
+@import url("../blocks/footer.css");</code></pre>
+                  </figure>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-fonts" aria-labelledby="tab-fonts" tabindex="0" hidden>
+                  <p class="topic__text">Um <code class="inline-code">@font-face</code> para cada peso usado no design.</p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">vendor/fonts.css</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./fonts/Inter-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./fonts/Inter-Bold.woff2") format("woff2");
+}</code></pre>
+                  </figure>
+                  <ul class="topic__list">
+                    <li class="topic__list-item"><code class="inline-code">font-family</code>: o nome que você usa no resto do CSS.</li>
+                    <li class="topic__list-item"><code class="inline-code">font-weight</code>: qual peso <strong>este</strong> arquivo representa.</li>
+                    <li class="topic__list-item"><code class="inline-code">font-display: swap</code>: mostra o texto com a fonte alternativa enquanto a principal carrega.</li>
+                    <li class="topic__list-item"><code class="inline-code">./fonts/</code>: o <code class="inline-code">fonts.css</code> está em <code class="inline-code">vendor/</code>, ao lado da pasta <code class="inline-code">fonts/</code>.</li>
+                  </ul>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-page" aria-labelledby="tab-page" tabindex="0" hidden>
+                  <p class="topic__text">
+                    Para projetos responsivos. Se o projeto não for responsivo e tiver largura mínima (como o projeto 4),
+                    use <code class="inline-code">max-width</code>, <code class="inline-code">min-width</code> e
+                    <code class="inline-code">margin: 0 auto</code> no lugar do grid.
+                  </p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">blocks/page.css</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1280px); /* largura máxima do design */
+  justify-content: center;
+  min-width: 320px;                          /* menor tela do design */
+  min-height: 100vh;
+  background-color: #ffffff;                 /* cor de fundo do design */
+  color: #000000;
+  font-family: "Inter", Arial, sans-serif;
+}</code></pre>
+                  </figure>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-block" aria-labelledby="tab-block" tabindex="0" hidden>
+                  <p class="topic__text">A ordem de qualquer arquivo de bloco: desktop, depois tablet, depois celular.</p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">blocks/bloco.css</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">.bloco {
+  /* estilos do bloco (desktop) */
+}
+
+.bloco__elemento {
+  /* estilos do elemento (desktop) */
+}
+
+.bloco__elemento_chave_valor {
+  /* só o que muda no modificador */
+}
+
+@media (max-width: 1024px) {
+  /* só o que muda no tablet */
+}
+
+@media (max-width: 544px) {
+  /* só o que muda no celular */
+}</code></pre>
+                  </figure>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-readme" aria-labelledby="tab-readme" tabindex="0" hidden>
+                  <p class="topic__text">Os quatro itens obrigatórios, mais os planos de melhoria quando o enunciado pedir.</p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">README.md</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content"># Nome do projeto
+
+Projeto X do curso de Desenvolvimento Web Full-Stack da TripleTen.
+
+## Descrição
+
+O que é a página e o que ela tem: as seções e o que cada uma mostra.
+
+## Tecnologias e técnicas utilizadas
+
+- HTML5 semântico
+- CSS3 com Flexbox
+- Metodologia BEM com estrutura de arquivos BEM Flat
+- Design responsivo com media queries (se houver)
+- Fontes conectadas localmente com `@font-face` (se houver)
+- Normalize.css
+
+## Planos de melhoria
+
+- Uma ideia sua para melhorar o projeto no futuro
+
+## GitHub Pages
+
+https://8felps8.github.io/NOME_DO_REPOSITORIO/</code></pre>
+                  </figure>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-editorconfig" aria-labelledby="tab-editorconfig" tabindex="0" hidden>
+                  <p class="topic__text">Igual em todos os projetos: 2 espaços, UTF-8 e quebra de linha no padrão Unix.</p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">.editorconfig</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">root = true
+
+[*]
+indent_style = space
+indent_size = 2
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.md]
+trim_trailing_whitespace = false</code></pre>
+                  </figure>
+                </div>
+
+                <div class="tabs__panel" role="tabpanel" id="panel-ignore" aria-labelledby="tab-ignore" tabindex="0" hidden>
+                  <p class="topic__text">Uma linha em cada arquivo.</p>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">.gitignore</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">.DS_Store</code></pre>
+                  </figure>
+                  <figure class="code">
+                    <figcaption class="code__header">
+                      <span class="code__label">.prettierignore</span>
+                      <button class="code__copy" type="button">Copiar</button>
+                    </figcaption>
+                    <pre class="code__pre"><code class="code__content">vendor/normalize.css</code></pre>
+                  </figure>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ===================== 12. GLOSSÁRIO ===================== -->
+          <section class="topic" id="glossario" aria-labelledby="glossario-title">
+            <header class="topic__header">
+              <p class="topic__number">Seção 12</p>
+              <h2 class="topic__title" id="glossario-title">Glossário</h2>
+              <p class="topic__lead">Os termos técnicos do guia, explicados em uma linha.</p>
+            </header>
+
+            <dl class="glossary">
+              <div class="glossary__item" data-part><dt class="glossary__term">Bloco (BEM)</dt><dd class="glossary__definition">Componente independente da página, como <code class="inline-code">header</code> ou <code class="inline-code">form</code>.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Elemento (BEM)</dt><dd class="glossary__definition">Parte de um bloco: <code class="inline-code">bloco__elemento</code>.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Modificador (BEM)</dt><dd class="glossary__definition">Variação de um bloco ou elemento: <code class="inline-code">bloco__elemento_chave_valor</code>.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Mix</dt><dd class="glossary__definition">Um elemento HTML com classes de dois blocos: <code class="inline-code">reservation__form form</code>.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">BEM Flat</dt><dd class="glossary__definition">Um arquivo CSS por bloco, todos direto em <code class="inline-code">blocks/</code>.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Semântica</dt><dd class="glossary__definition">Usar a tag que descreve o conteúdo: <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;footer&gt;</code>...</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Herança</dt><dd class="glossary__definition">Os filhos recebem algumas propriedades do pai, como cor e fonte.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Cascata</dt><dd class="glossary__definition">Quando duas regras conflitam, vence a mais específica ou a que vem depois.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Breakpoint</dt><dd class="glossary__definition">A largura em que o layout muda, como 1024px.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Media query</dt><dd class="glossary__definition">O <code class="inline-code">@media (...)</code> que aplica estilos só em certas larguras.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Viewport</dt><dd class="glossary__definition">A área visível do navegador.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term"><code class="inline-code">vh</code> e <code class="inline-code">vw</code></dt><dd class="glossary__definition">1% da altura e da largura da viewport: <code class="inline-code">100vh</code> é a tela inteira.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Flexbox</dt><dd class="glossary__definition">Sistema de layout para alinhar itens em linha ou em coluna.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Grid</dt><dd class="glossary__definition">Sistema de layout em linhas e colunas.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term"><code class="inline-code">fr</code></dt><dd class="glossary__definition">Uma fração do espaço livre num grid.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Normalize.css</dt><dd class="glossary__definition">Arquivo que padroniza os estilos entre navegadores.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term"><code class="inline-code">@font-face</code></dt><dd class="glossary__definition">Regra que conecta um arquivo de fonte ao CSS.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term"><code class="inline-code">.woff2</code></dt><dd class="glossary__definition">Formato de fonte para a web, leve e comprimido.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Favicon</dt><dd class="glossary__definition">O ícone da aba do navegador.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Clone</dt><dd class="glossary__definition">Baixar um repositório do GitHub para o computador.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Commit</dt><dd class="glossary__definition">Salvar um conjunto de mudanças no histórico do Git.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Push</dt><dd class="glossary__definition">Enviar os commits para o GitHub.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">GitHub Pages</dt><dd class="glossary__definition">Serviço do GitHub que publica o site a partir do repositório.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Validador W3C</dt><dd class="glossary__definition">Ferramenta que aponta erros no HTML, em validator.w3.org.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">DevTools</dt><dd class="glossary__definition">As ferramentas de desenvolvedor do navegador, abertas com <kbd class="inline-code">F12</kbd>.</dd></div>
+            </dl>
+          </section>
+        </main>
+      </div>
+
+      <footer class="footer">
+        <p class="footer__text">
+          Guia de estudos de Felipe Leite · Feito com HTML, CSS e um pouco de JavaScript ·
+          <a class="footer__link" href="https://github.com/8felps8/pagina-de-consulta" target="_blank">Código no GitHub</a>
+        </p>
+      </footer>
+
+      <button class="to-top" type="button" aria-label="Voltar ao topo">
+        <svg class="to-top__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6" /></svg>
+      </button>
+    </div>
+  </body>
+</html>

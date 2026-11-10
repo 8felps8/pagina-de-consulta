@@ -1,0 +1,27 @@
+.note {
+  margin: 20px 0 0;
+  padding: 16px 18px;
+  border-left: 4px solid var(--color-accent);
+  border-radius: 10px;
+  background-color: var(--color-tip-bg);
+}
+
+.note_type_warning {
+  border-left-color: var(--color-warning);
+  background-color: var(--color-warning-bg);
+}
+
+.note_type_success {
+  border-left-color: var(--color-success);
+  background-color: var(--color-success-bg);
+}
+
+.note__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.note__text {
+  margin: 6px 0 0;
+}

@@ -1,0 +1,9 @@
+.inline-code {
+  padding: 0.1em 0.4em;
+  border-radius: 5px;
+  background-color: var(--color-inline-code-bg);
+  color: var(--color-inline-code-text);
+  font-family: Consolas, "Cascadia Code", "Courier New", monospace;
+  font-size: 0.88em;
+  overflow-wrap: break-word;
+}
