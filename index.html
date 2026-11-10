@@ -10,7 +10,7 @@
     <meta name="author" content="Felipe Leite" />
     <meta
       name="keywords"
-      content="HTML, CSS, BEM, design responsivo, semântica, guia, checklist, TripleTen"
+      content="HTML, CSS, BEM, design responsivo, semântica, guia, checklist, front-end"
     />
     <meta name="theme-color" content="#2f6fed" />
     <link rel="stylesheet" href="./pages/index.css" />
@@ -154,7 +154,7 @@
             <h1 class="hero__title" id="hero-title">Tudo o que você precisa para começar um projeto web</h1>
             <p class="hero__subtitle">
               Um passo a passo para montar a estrutura, escrever HTML semântico, nomear classes com BEM,
-              criar layouts responsivos e entregar sem erros. Feito a partir dos projetos da TripleTen.
+              criar layouts responsivos e entregar sem erros. Feito a partir dos meus estudos de front-end.
             </p>
             <div class="hero__actions">
               <a class="hero__button hero__button_type_primary" href="#passo-a-passo">Começar um projeto</a>
@@ -325,23 +325,24 @@
                 <span class="steps__number">1</span>
                 <h3 class="steps__title">Clonar o repositório</h3>
                 <p class="topic__text">
-                  A TripleTen cria o repositório no seu GitHub. Você só precisa trazer ele para o computador.
-                  No VS Code, abra o terminal em <strong>Terminal → New Terminal</strong> e entre na pasta dos projetos:
+                  Crie o repositório no GitHub (botão <strong>New repository</strong>), ou use o que já foi criado
+                  para você, e traga ele para o computador. No VS Code, abra o terminal em
+                  <strong>Terminal → New Terminal</strong> e entre na pasta onde ficam os seus projetos:
                 </p>
                 <figure class="code">
                   <figcaption class="code__header">
                     <span class="code__label">Terminal</span>
                     <button class="code__copy" type="button">Copiar</button>
                   </figcaption>
-                  <pre class="code__pre"><code class="code__content">cd ~/projects</code></pre>
+                  <pre class="code__pre"><code class="code__content">cd pasta-dos-projetos</code></pre>
                 </figure>
-                <p class="topic__text">Depois clone, trocando o final pelo nome do repositório:</p>
+                <p class="topic__text">Depois clone, trocando o seu usuário e o nome do repositório:</p>
                 <figure class="code">
                   <figcaption class="code__header">
                     <span class="code__label">Terminal</span>
                     <button class="code__copy" type="button">Copiar</button>
                   </figcaption>
-                  <pre class="code__pre"><code class="code__content">git clone https://github.com/8felps8/NOME_DO_REPOSITORIO.git</code></pre>
+                  <pre class="code__pre"><code class="code__content">git clone https://github.com/SEU_USUARIO/NOME_DO_REPOSITORIO.git</code></pre>
                 </figure>
                 <p class="topic__text">Por fim, abra a pasta no VS Code em <strong>File → Open Folder</strong>.</p>
                 <aside class="note">
@@ -423,7 +424,7 @@
                 </p>
                 <ul class="topic__list">
                   <li class="topic__list-item">Copie de um projeto anterior para <code class="inline-code">vendor/normalize.css</code>, <strong>ou</strong></li>
-                  <li class="topic__list-item">baixe em <code class="inline-code">github.com/necolas/normalize.css</code>.</li>
+                  <li class="topic__list-item">baixe do projeto oficial: procure "normalize.css" no GitHub (é gratuito, com licença MIT).</li>
                 </ul>
                 <aside class="note note_type_warning">
                   <p class="note__title">Regra</p>
@@ -435,9 +436,10 @@
                 <span class="steps__number">5</span>
                 <h3 class="steps__title">As fontes (se o projeto pedir fontes locais)</h3>
                 <ol class="topic__list">
-                  <li class="topic__list-item">Baixe do site oficial indicado no enunciado (ex.: Inter em <code class="inline-code">rsms.me/inter</code>).</li>
+                  <li class="topic__list-item">Baixe a fonte do site oficial dela, de preferência no formato para web.</li>
                   <li class="topic__list-item">No Figma, descubra <strong>quais pesos</strong> o design usa: clique em cada texto e veja o painel da direita.</li>
-                  <li class="topic__list-item">Copie <strong>só esses pesos</strong>, em formato <code class="inline-code">.woff2</code>, para <code class="inline-code">vendor/fonts/</code>. O checklist reprova fontes que não são usadas.</li>
+                  <li class="topic__list-item">Copie <strong>só esses pesos</strong>, em formato <code class="inline-code">.woff2</code>, para <code class="inline-code">vendor/fonts/</code>. Fontes que não são usadas só deixam o site mais pesado.</li>
+                  <li class="topic__list-item">Guarde junto o arquivo de licença da fonte (ex.: <code class="inline-code">LICENSE.txt</code>), que vem no download.</li>
                   <li class="topic__list-item">Crie <code class="inline-code">vendor/fonts.css</code> com um <code class="inline-code">@font-face</code> para cada peso (veja em <a class="topic__link" href="#modelos">Modelos prontos</a>).</li>
                 </ol>
                 <p class="topic__text"><strong>Tabela de pesos</strong> (vale decorar):</p>
@@ -533,7 +535,7 @@
                 </figure>
                 <ol class="topic__list">
                   <li class="topic__list-item"><strong>O normalize vem primeiro.</strong> No CSS, quando duas regras definem a mesma coisa, vence a que vem depois. Assim os seus estilos sempre ganham do normalize.</li>
-                  <li class="topic__list-item"><strong>O <code class="inline-code">fonts.css</code> vem logo depois.</strong> O checklist pede essa ordem.</li>
+                  <li class="topic__list-item"><strong>O <code class="inline-code">fonts.css</code> vem logo depois.</strong> Assim as fontes já estão carregadas quando os blocos forem usá-las.</li>
                   <li class="topic__list-item"><strong>O <code class="inline-code">@import</code> fica no topo do arquivo.</strong> Se vier depois de qualquer regra, o navegador ignora.</li>
                 </ol>
                 <aside class="note">
@@ -551,7 +553,7 @@
                 <h3 class="steps__title">O <code class="inline-code">index.html</code></h3>
                 <p class="topic__text">
                   Comece <strong>sempre</strong> pelo esqueleto de <a class="topic__link" href="#modelos">Modelos prontos</a>.
-                  Ele já tem tudo o que o verificador da TripleTen exige: as metas, o link do CSS, o favicon e a
+                  Ele já tem o essencial: as metas, o link do CSS, o favicon e a
                   estrutura <code class="inline-code">div.page</code> com <code class="inline-code">header</code>,
                   <code class="inline-code">main.content</code> e <code class="inline-code">footer</code>. Depois,
                   preencha o conteúdo seguindo a seção <a class="topic__link" href="#html">HTML e semântica</a>.
@@ -561,17 +563,17 @@
               <li class="steps__item" data-part>
                 <span class="steps__number">10</span>
                 <h3 class="steps__title">Os arquivos dos blocos</h3>
-                <p class="topic__text">Conforme você escreve o HTML, cada <strong>bloco novo</strong> (ex.: <code class="inline-code">class="lead"</code>) ganha:</p>
+                <p class="topic__text">Conforme você escreve o HTML, cada <strong>bloco novo</strong> (ex.: <code class="inline-code">class="banner"</code>) ganha:</p>
                 <ol class="topic__list">
-                  <li class="topic__list-item">um arquivo <code class="inline-code">blocks/lead.css</code>;</li>
-                  <li class="topic__list-item">uma linha <code class="inline-code">@import url("../blocks/lead.css");</code> no <code class="inline-code">pages/index.css</code>.</li>
+                  <li class="topic__list-item">um arquivo <code class="inline-code">blocks/banner.css</code>;</li>
+                  <li class="topic__list-item">uma linha <code class="inline-code">@import url("../blocks/banner.css");</code> no <code class="inline-code">pages/index.css</code>.</li>
                 </ol>
                 <aside class="note note_type_warning">
                   <p class="note__title">Cuidado com o nome do arquivo</p>
                   <p class="note__text">
-                    É <code class="inline-code">lead.css</code>: <strong>sem ponto no começo</strong> e
-                    <strong>com <code class="inline-code">.css</code> no final</strong>. Já aconteceu de criar
-                    <code class="inline-code">.lead</code> (o nome da classe) e a página ficar sem nenhum estilo.
+                    É <code class="inline-code">banner.css</code>: <strong>sem ponto no começo</strong> e
+                    <strong>com <code class="inline-code">.css</code> no final</strong>. Um erro comum é criar
+                    <code class="inline-code">.banner</code> (o nome da classe) e a página ficar sem nenhum estilo.
                   </p>
                 </aside>
               </li>
@@ -585,7 +587,7 @@
                   <li class="topic__list-item">a descrição do projeto e do que ele faz;</li>
                   <li class="topic__list-item">as tecnologias e técnicas usadas;</li>
                   <li class="topic__list-item">o link do GitHub Pages;</li>
-                  <li class="topic__list-item">planos de melhoria, quando o enunciado pedir.</li>
+                  <li class="topic__list-item">planos de melhoria: ideias para evoluir o projeto.</li>
                 </ol>
               </li>
             </ol>
@@ -603,8 +605,8 @@
               <h3 class="topic__subtitle">Primeiros passos</h3>
               <ul class="topic__list">
                 <li class="topic__list-item">Se pedir login, crie uma conta gratuita.</li>
-                <li class="topic__list-item">Se o link estiver lotado, baixe o arquivo <code class="inline-code">.fig</code> e importe na sua conta: <strong>Drafts → Import</strong>.</li>
-                <li class="topic__list-item">Para não se distrair com os cursores de outros alunos: <strong>View → desmarque "Multiplayer cursors"</strong>.</li>
+                <li class="topic__list-item">Se o arquivo estiver lotado, baixe o <code class="inline-code">.fig</code> e importe na sua conta: <strong>Drafts → Import</strong>.</li>
+                <li class="topic__list-item">Para não se distrair com os cursores de outras pessoas: <strong>View → desmarque "Multiplayer cursors"</strong>.</li>
               </ul>
             </div>
 
@@ -645,16 +647,16 @@
               <aside class="note note_type_success">
                 <p class="note__title">Os nomes das camadas dão a dica</p>
                 <p class="note__text">
-                  No projeto 5, as camadas se chamavam <code class="inline-code">lead</code>,
-                  <code class="inline-code">intro</code>, <code class="inline-code">__title</code>,
-                  <code class="inline-code">__subtitle</code>... Eram praticamente os nomes BEM prontos.
+                  Muitos designers nomeiam as camadas como os blocos: <code class="inline-code">banner</code>,
+                  <code class="inline-code">about</code>, <code class="inline-code">__title</code>,
+                  <code class="inline-code">__subtitle</code>... Quando isso acontece, os nomes BEM já estão quase prontos.
                 </p>
               </aside>
             </div>
 
             <div class="topic__part" data-part>
               <h3 class="topic__subtitle">Monte uma tabela de medidas antes de programar</h3>
-              <p class="topic__text">Para cada seção, anote as medidas de cada tamanho de tela. Exemplo da seção <code class="inline-code">lead</code> do projeto 5:</p>
+              <p class="topic__text">Para cada seção, anote as medidas de cada tamanho de tela. Um exemplo, para uma seção <code class="inline-code">banner</code> fictícia:</p>
               <div class="data-table" tabindex="0" role="region" aria-label="Exemplo de tabela de medidas">
                 <table class="data-table__table data-table__table_wide">
                   <thead>
@@ -668,27 +670,27 @@
                   <tbody>
                     <tr class="data-table__row">
                       <td class="data-table__cell">Espaço acima da seção</td>
-                      <td class="data-table__cell">90px</td><td class="data-table__cell">90px</td><td class="data-table__cell">50px</td>
+                      <td class="data-table__cell">80px</td><td class="data-table__cell">64px</td><td class="data-table__cell">40px</td>
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell">Título: fonte / linha</td>
-                      <td class="data-table__cell">96 / 100px</td><td class="data-table__cell">75 / 79px</td><td class="data-table__cell">40 / 44px</td>
+                      <td class="data-table__cell">64 / 72px</td><td class="data-table__cell">48 / 56px</td><td class="data-table__cell">32 / 40px</td>
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell">Título → subtítulo</td>
-                      <td class="data-table__cell">32px</td><td class="data-table__cell">25px</td><td class="data-table__cell">16px</td>
+                      <td class="data-table__cell">24px</td><td class="data-table__cell">20px</td><td class="data-table__cell">16px</td>
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell">Subtítulo: fonte / linha</td>
-                      <td class="data-table__cell">30 / 36px</td><td class="data-table__cell">30 / 36px</td><td class="data-table__cell">16 / 20px</td>
+                      <td class="data-table__cell">24 / 32px</td><td class="data-table__cell">20 / 28px</td><td class="data-table__cell">16 / 24px</td>
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell">Subtítulo → imagem</td>
-                      <td class="data-table__cell">64px</td><td class="data-table__cell">30px</td><td class="data-table__cell">40px</td>
+                      <td class="data-table__cell">48px</td><td class="data-table__cell">40px</td><td class="data-table__cell">32px</td>
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell">Imagem</td>
-                      <td class="data-table__cell">984×615</td><td class="data-table__cell">768×480</td><td class="data-table__cell">320×200</td>
+                      <td class="data-table__cell">960×540</td><td class="data-table__cell">720×405</td><td class="data-table__cell">288×162</td>
                     </tr>
                   </tbody>
                 </table>
@@ -706,8 +708,8 @@
                 </figcaption>
                 <pre class="code__pre"><code class="code__content">line-height = altura da linha ÷ tamanho da fonte
 
-Exemplo: fonte 96px, linha 100px
-100 ÷ 96 = 1.04   →   line-height: 1.04;</code></pre>
+Exemplo: fonte 64px, linha 72px
+72 ÷ 64 = 1.125   →   line-height: 1.125;</code></pre>
               </figure>
             </div>
 
@@ -720,9 +722,8 @@ Exemplo: fonte 96px, linha 100px
               <aside class="note note_type_warning">
                 <p class="note__title">Exceção</p>
                 <p class="note__text">
-                  Se o verificador pedir uma margem num elemento específico (já aconteceu: "valor incorreto para
-                  <code class="inline-code">margin-bottom</code> do <code class="inline-code">.reservation__title</code>"),
-                  siga o que ele pede.
+                  Se as instruções do projeto pedirem a margem num elemento ou numa propriedade específica
+                  (por exemplo, <code class="inline-code">margin-bottom</code> no título), siga o que foi pedido.
                 </p>
               </aside>
             </div>
@@ -832,9 +833,10 @@ Exemplo: fonte 96px, linha 100px
             </div>
 
             <div class="topic__part" data-part>
-              <h3 class="topic__subtitle">Proibidos pelo checklist: <code class="inline-code">&lt;b&gt;</code>, <code class="inline-code">&lt;i&gt;</code> e <code class="inline-code">&lt;br&gt;</code></h3>
+              <h3 class="topic__subtitle">Evite <code class="inline-code">&lt;b&gt;</code>, <code class="inline-code">&lt;i&gt;</code> e <code class="inline-code">&lt;br&gt;</code></h3>
               <ul class="topic__list">
-                <li class="topic__list-item">No lugar de <code class="inline-code">&lt;b&gt;</code> e <code class="inline-code">&lt;i&gt;</code>: um <code class="inline-code">&lt;span&gt;</code> com classe, e o estilo no CSS.</li>
+                <li class="topic__list-item">Elas descrevem aparência, não significado. Para dar ênfase de verdade, existem <code class="inline-code">&lt;strong&gt;</code> e <code class="inline-code">&lt;em&gt;</code>.</li>
+                <li class="topic__list-item">Para só mudar o visual: um <code class="inline-code">&lt;span&gt;</code> com classe, e o estilo no CSS.</li>
                 <li class="topic__list-item">No lugar de <code class="inline-code">&lt;br&gt;</code>: um <code class="inline-code">&lt;span&gt;</code> com <code class="inline-code">display: block;</code>, ou um <code class="inline-code">max-width</code> que faça o texto quebrar no lugar certo.</li>
               </ul>
             </div>
@@ -846,9 +848,9 @@ Exemplo: fonte 96px, linha 100px
                   <span class="code__label">Exemplo</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">h1  De Pátria para Pátria          ← só um: o título da página
-  h2  Conheça um pouco mais...     ← o título de cada seção
-    h3  ...                        ← subtítulos dentro da seção</code></pre>
+                <pre class="code__pre"><code class="code__content">h1  Nome do site                   ← só um: o título da página
+  h2  Sobre nós                    ← o título de cada seção
+    h3  Nossa história             ← subtítulos dentro da seção</code></pre>
               </figure>
               <p class="topic__text">
                 Nunca pule níveis e nunca use um título só porque "a letra é grande". O tamanho se resolve no CSS.
@@ -863,14 +865,14 @@ Exemplo: fonte 96px, linha 100px
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
                 <pre class="code__pre"><code class="code__content">&lt;img
-  class="lead__image"
+  class="banner__image"
   src="./images/nome-da-imagem.jpg"
   alt="Descrição do que a imagem mostra, em português"
 /&gt;</code></pre>
               </figure>
               <ul class="topic__list">
                 <li class="topic__list-item"><strong>Todo <code class="inline-code">&lt;img&gt;</code> precisa de <code class="inline-code">alt</code></strong>, no idioma da página.</li>
-                <li class="topic__list-item">O <code class="inline-code">alt</code> descreve o <strong>conteúdo</strong>: "Foto de uma cidade litorânea com um castelo", não "imagem1".</li>
+                <li class="topic__list-item">O <code class="inline-code">alt</code> descreve o <strong>conteúdo</strong>: "Foto de uma xícara de café sobre uma mesa de madeira", não "imagem1".</li>
               </ul>
             </div>
 
@@ -881,8 +883,8 @@ Exemplo: fonte 96px, linha 100px
                   <span class="code__label">HTML</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">&lt;a class="nav__link" href="#recipes"&gt;Receitas&lt;/a&gt;
-&lt;a class="footer__link" href="https://www.instagram.com/" target="_blank"&gt;Instagram&lt;/a&gt;</code></pre>
+                <pre class="code__pre"><code class="code__content">&lt;a class="nav__link" href="#about"&gt;Sobre nós&lt;/a&gt;
+&lt;a class="footer__link" href="https://www.example.com/" target="_blank"&gt;Site externo&lt;/a&gt;</code></pre>
               </figure>
               <ul class="topic__list">
                 <li class="topic__list-item"><strong>Todo link precisa de <code class="inline-code">href</code></strong> com um valor.</li>
@@ -898,7 +900,7 @@ Exemplo: fonte 96px, linha 100px
                   <span class="code__label">HTML</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">&lt;form class="reservation__form form"&gt;
+                <pre class="code__pre"><code class="code__content">&lt;form class="contact__form form"&gt;
   &lt;fieldset class="form__fieldset"&gt;
     &lt;label class="form__label" for="name"&gt;Nome *&lt;/label&gt;
     &lt;input
@@ -929,7 +931,7 @@ Exemplo: fonte 96px, linha 100px
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
                 <pre class="code__pre"><code class="code__content">&lt;iframe
-  class="recipes__iframe"
+  class="videos__iframe"
   src="https://www.youtube.com/embed/ID_DO_VIDEO"
   title="Descrição do vídeo"
   allowfullscreen
@@ -942,8 +944,8 @@ Exemplo: fonte 96px, linha 100px
             </div>
 
             <div class="topic__part" data-part>
-              <h3 class="topic__subtitle">As metas obrigatórias</h3>
-              <p class="topic__text">O verificador da TripleTen reprova se faltar alguma destas dentro do <code class="inline-code">&lt;head&gt;</code>:</p>
+              <h3 class="topic__subtitle">As metas essenciais</h3>
+              <p class="topic__text">Toda página deve ter estas metas dentro do <code class="inline-code">&lt;head&gt;</code>. Elas ajudam o navegador, os buscadores e quem compartilha o link:</p>
               <figure class="code">
                 <figcaption class="code__header">
                   <span class="code__label">HTML</span>
@@ -952,7 +954,7 @@ Exemplo: fonte 96px, linha 100px
                 <pre class="code__pre"><code class="code__content">&lt;meta charset="UTF-8" /&gt;
 &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
 &lt;meta name="description" content="Resumo da página" /&gt;
-&lt;meta name="author" content="Felipe Leite" /&gt;
+&lt;meta name="author" content="Seu Nome" /&gt;
 &lt;meta name="keywords" content="palavra1, palavra2, palavra3" /&gt;</code></pre>
               </figure>
               <p class="topic__text">
@@ -974,7 +976,7 @@ Exemplo: fonte 96px, linha 100px
               </figure>
               <p class="topic__text">
                 Atalho no VS Code: <kbd class="inline-code">Ctrl + /</kbd>. Antes de entregar,
-                <strong>apague os comentários desnecessários</strong>: o checklist cobra.
+                <strong>apague os comentários desnecessários</strong> e deixe só os que explicam algo que não é óbvio.
               </p>
             </div>
           </section>
@@ -1030,9 +1032,9 @@ Exemplo: fonte 96px, linha 100px
             <div class="topic__part" data-part>
               <h3 class="topic__subtitle">Regras de nomes</h3>
               <ol class="topic__list">
-                <li class="topic__list-item"><strong>Só letras minúsculas</strong>, e hífen para separar palavras: <code class="inline-code">header__span-accent</code>.</li>
+                <li class="topic__list-item"><strong>Só letras minúsculas</strong>, e hífen para separar palavras: <code class="inline-code">header__title-accent</code>.</li>
                 <li class="topic__list-item">
-                  <strong>Nada de números ou ordem no nome.</strong> Isto reprova o projeto:
+                  <strong>Nada de números ou ordem no nome.</strong> Evite:
                   <code class="inline-code">card__title-1</code>, <code class="inline-code">card__title-one</code>,
                   <code class="inline-code">card__first-title</code>. Use a mesma classe
                   <code class="inline-code">card__title</code> em todos, e um modificador se algum for diferente.
@@ -1043,7 +1045,7 @@ Exemplo: fonte 96px, linha 100px
                   certo <code class="inline-code">footer__list-item</code>.
                 </li>
                 <li class="topic__list-item"><strong>O nome diz o que é, não como parece:</strong> <code class="inline-code">header__title</code>, não <code class="inline-code">header__big-blue-text</code>.</li>
-                <li class="topic__list-item"><strong>Todo elemento estilizado tem classe.</strong> Não estilize por tag (<code class="inline-code">h1 { }</code>) nem por id (<code class="inline-code">#recipes { }</code>).</li>
+                <li class="topic__list-item"><strong>Todo elemento estilizado tem classe.</strong> Não estilize por tag (<code class="inline-code">h1 { }</code>) nem por id (<code class="inline-code">#about { }</code>).</li>
               </ol>
             </div>
 
@@ -1079,17 +1081,17 @@ Exemplo: fonte 96px, linha 100px
 
             <div class="topic__part" data-part>
               <h3 class="topic__subtitle">Mix: um elemento que também é bloco</h3>
-              <p class="topic__text">Quando um bloco (ex.: <code class="inline-code">form</code>) fica dentro de outro (ex.: <code class="inline-code">reservation</code>):</p>
+              <p class="topic__text">Quando um bloco (ex.: <code class="inline-code">form</code>) fica dentro de outro (ex.: <code class="inline-code">contact</code>):</p>
               <figure class="code">
                 <figcaption class="code__header">
                   <span class="code__label">HTML</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">&lt;form class="reservation__form form"&gt;</code></pre>
+                <pre class="code__pre"><code class="code__content">&lt;form class="contact__form form"&gt;</code></pre>
               </figure>
               <ul class="topic__list">
                 <li class="topic__list-item"><code class="inline-code">form</code> cuida da <strong>aparência</strong>: largura máxima, cores, espaçamento interno.</li>
-                <li class="topic__list-item"><code class="inline-code">reservation__form</code> cuida da <strong>posição</strong> dentro da seção: as margens.</li>
+                <li class="topic__list-item"><code class="inline-code">contact__form</code> cuida da <strong>posição</strong> dentro da seção: as margens.</li>
               </ul>
               <aside class="note">
                 <p class="note__title">Regra da "geometria externa"</p>
@@ -1104,7 +1106,7 @@ Exemplo: fonte 96px, linha 100px
               <h3 class="topic__subtitle">Seletores</h3>
               <ul class="topic__list">
                 <li class="topic__list-item">No máximo <strong>dois seletores aninhados</strong>: <code class="inline-code">.form__checkbox:checked</code> está ok.</li>
-                <li class="topic__list-item">Prefira <strong>uma classe só</strong> por regra: <code class="inline-code">.lead__title { }</code>.</li>
+                <li class="topic__list-item">Prefira <strong>uma classe só</strong> por regra: <code class="inline-code">.banner__title { }</code>.</li>
                 <li class="topic__list-item"><strong>Nunca use <code class="inline-code">!important</code>.</strong></li>
               </ul>
             </div>
@@ -1142,8 +1144,8 @@ Exemplo: fonte 96px, linha 100px
                       <td class="data-table__cell"><code class="inline-code">blocks/form.css</code></td>
                     </tr>
                     <tr class="data-table__row">
-                      <td class="data-table__cell"><code class="inline-code">.reservation__form</code></td>
-                      <td class="data-table__cell"><code class="inline-code">blocks/reservation.css</code> (é elemento de <code class="inline-code">reservation</code>)</td>
+                      <td class="data-table__cell"><code class="inline-code">.contact__form</code></td>
+                      <td class="data-table__cell"><code class="inline-code">blocks/contact.css</code> (é elemento de <code class="inline-code">contact</code>)</td>
                     </tr>
                   </tbody>
                 </table>
@@ -1160,7 +1162,7 @@ Exemplo: fonte 96px, linha 100px
             <header class="topic__header">
               <p class="topic__number">Seção 06</p>
               <h2 class="topic__title" id="css-title">CSS: regras de ouro</h2>
-              <p class="topic__lead">Doze regras que evitam a maior parte dos problemas e dos apontamentos dos revisores.</p>
+              <p class="topic__lead">Doze regras que evitam a maior parte dos problemas e deixam o código fácil de revisar.</p>
             </header>
 
             <div class="topic__part" data-part>
@@ -1221,12 +1223,12 @@ font-family: "Noto Serif", "Times New Roman", serif; /* com serifa */</code></pr
                   <span class="code__label">CSS</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">.lead__title {
+                <pre class="code__pre"><code class="code__content">.banner__title {
   margin: 0; /* zera todas as margens */
 }
 
-.lead__subtitle {
-  margin: 32px 0 0; /* só em cima: 32px */
+.banner__subtitle {
+  margin: 24px 0 0; /* só em cima: 24px */
 }
 
 .nav__links {
@@ -1258,8 +1260,8 @@ margin: 0 auto;              /* centraliza na horizontal (precisa de largura má
             </div>
 
             <div class="topic__part" data-part>
-              <h3 class="topic__subtitle">5. O que o checklist proíbe</h3>
-              <div class="data-table" tabindex="0" role="region" aria-label="Proibições do checklist">
+              <h3 class="topic__subtitle">5. O que evitar</h3>
+              <div class="data-table" tabindex="0" role="region" aria-label="O que evitar no CSS">
                 <table class="data-table__table">
                   <thead>
                     <tr class="data-table__row">
@@ -1282,7 +1284,7 @@ margin: 0 auto;              /* centraliza na horizontal (precisa de largura má
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell"><code class="inline-code">position: absolute</code> para montar o layout</td>
-                      <td class="data-table__cell">Flexbox. Absolute só para decoração, quando o roteiro permitir</td>
+                      <td class="data-table__cell">Flexbox ou grid. Absolute só para decoração e sobreposições</td>
                     </tr>
                     <tr class="data-table__row">
                       <td class="data-table__cell"><code class="inline-code">!important</code></td>
@@ -1378,8 +1380,8 @@ margin: 0 auto;              /* centraliza na horizontal (precisa de largura má
                   <span class="code__label">CSS</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">.recipes {
-  background: #0a2750 url("../images/fundo.svg") center / cover no-repeat;
+                <pre class="code__pre"><code class="code__content">.banner {
+  background: #1e3a5f url("../images/fundo.svg") center / cover no-repeat;
 }</code></pre>
               </figure>
               <p class="topic__text">
@@ -1397,12 +1399,12 @@ margin: 0 auto;              /* centraliza na horizontal (precisa de largura má
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
                 <pre class="code__pre"><code class="code__content">.nav__link:hover { /* mouse em cima */
-  color: #2f80ed;
+  color: #0057d9;
 }
 
 .footer__link:hover,
 .footer__link:focus { /* navegação pelo teclado (Tab) */
-  color: #c1c1c1;
+  color: #999999;
 }
 
 .form__button:hover {
@@ -1440,22 +1442,22 @@ margin: 0 auto;              /* centraliza na horizontal (precisa de largura má
               </ol>
               <figure class="code">
                 <figcaption class="code__header">
-                  <span class="code__label">blocks/lead.css</span>
+                  <span class="code__label">blocks/banner.css</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">.lead__title {
-  font-size: 96px; /* desktop: vale sempre */
+                <pre class="code__pre"><code class="code__content">.banner__title {
+  font-size: 64px; /* desktop: vale sempre */
 }
 
 @media (max-width: 1024px) {
-  .lead__title {
-    font-size: 75px; /* tablet: sobrescreve */
+  .banner__title {
+    font-size: 48px; /* tablet: sobrescreve */
   }
 }
 
 @media (max-width: 544px) {
-  .lead__title {
-    font-size: 40px; /* celular: sobrescreve de novo */
+  .banner__title {
+    font-size: 32px; /* celular: sobrescreve de novo */
   }
 }</code></pre>
               </figure>
@@ -1470,13 +1472,13 @@ margin: 0 auto;              /* centraliza na horizontal (precisa de largura má
               </p>
               <ul class="topic__list">
                 <li class="topic__list-item">o celular <strong>herda</strong> tudo o que foi definido para o tablet;</li>
-                <li class="topic__list-item">você <strong>não repete</strong> no celular o que já está no tablet. O checklist cobra: "os mesmos estilos não são duplicados em diferentes media queries".</li>
+                <li class="topic__list-item">você <strong>não repete</strong> no celular o que já está no tablet. Estilo duplicado entre media queries é código a mais para manter.</li>
               </ul>
             </div>
 
             <div class="topic__part" data-part>
               <h3 class="topic__subtitle">Escolhendo os pontos de interrupção</h3>
-              <p class="topic__text">Se o enunciado não der, use o <strong>meio</strong> entre os tamanhos do design:</p>
+              <p class="topic__text">Se ninguém definir os pontos para você, use o <strong>meio</strong> entre os tamanhos do design:</p>
               <figure class="code">
                 <figcaption class="code__header">
                   <span class="code__label">Conta</span>
@@ -1520,7 +1522,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                   <tbody>
                     <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">max-width</code> em vez de <code class="inline-code">width</code></td><td class="data-table__cell">O elemento encolhe em telas menores</td></tr>
                     <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">width: 100%</code> em imagens</td><td class="data-table__cell">A imagem acompanha o contêiner</td></tr>
-                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">aspect-ratio: 16 / 10</code></td><td class="data-table__cell">A altura acompanha a largura, na proporção certa</td></tr>
+                    <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">aspect-ratio: 16 / 9</code></td><td class="data-table__cell">A altura acompanha a largura, na proporção certa</td></tr>
                     <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">object-fit: cover</code></td><td class="data-table__cell">A imagem preenche o espaço sem distorcer</td></tr>
                     <tr class="data-table__row"><td class="data-table__cell">Flexbox com <code class="inline-code">gap</code></td><td class="data-table__cell">Os itens se reorganizam sem contas</td></tr>
                     <tr class="data-table__row"><td class="data-table__cell"><code class="inline-code">flex-wrap: wrap</code></td><td class="data-table__cell">Os itens descem de linha quando não cabem</td></tr>
@@ -1537,10 +1539,10 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                   <span class="code__label">CSS</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">.lead__image {
+                <pre class="code__pre"><code class="code__content">.banner__image {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 10; /* largura ÷ altura do design: 984 ÷ 615 = 1,6 = 16/10 */
+  aspect-ratio: 16 / 9; /* largura ÷ altura do design: 960 ÷ 540 = 1,78 = 16/9 */
   object-fit: cover;
 }</code></pre>
               </figure>
@@ -1560,7 +1562,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
   justify-content: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #2a2c2f;
+  background-color: #f5f5f5;
 }</code></pre>
               </figure>
             </div>
@@ -1571,13 +1573,16 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                 <li class="topic__list-item">Abra a página no Chrome e aperte <kbd class="inline-code">F12</kbd> (DevTools).</li>
                 <li class="topic__list-item">Aperte <kbd class="inline-code">Ctrl + Shift + M</kbd> (modo dispositivo).</li>
                 <li class="topic__list-item">No topo, escolha <strong>Responsive</strong> e digite a largura.</li>
-                <li class="topic__list-item">Teste as larguras do design (ex.: 1280, 768, 320) <strong>e</strong> as intermediárias (ex.: 470, 665, 999, 1100, 1500).</li>
+                <li class="topic__list-item">Teste as larguras do design (ex.: 1280, 768, 320) <strong>e</strong> larguras no meio do caminho (ex.: 400, 600, 900, 1150, 1440).</li>
                 <li class="topic__list-item">Em cada uma, procure: <strong>barra de rolagem horizontal</strong>, texto vazando do bloco e elementos sobrepostos.</li>
                 <li class="topic__list-item">Teste também no <strong>Firefox</strong>.</li>
               </ol>
               <aside class="note">
-                <p class="note__title">Tolerância do checklist</p>
-                <p class="note__text">Até 30px de diferença em 1280px. Até 10px em 768px e 320px.</p>
+                <p class="note__title">Quanto pode diferir do design?</p>
+                <p class="note__text">
+                  Diferenças de poucos pixels são normais, porque navegador e Figma desenham o texto de jeitos um pouco
+                  diferentes. Se um espaçamento ou tamanho passar de uns 10px de diferença, vale revisar.
+                </p>
               </aside>
             </div>
           </section>
@@ -1614,7 +1619,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                   <span class="code__label">Terminal</span>
                   <button class="code__copy" type="button">Copiar</button>
                 </figcaption>
-                <pre class="code__pre"><code class="code__content">git commit -m "Adiciona a seção de receitas"</code></pre>
+                <pre class="code__pre"><code class="code__content">git commit -m "Adiciona a seção de contato"</code></pre>
               </figure>
               <p class="topic__text"><code class="inline-code">git push</code> envia para o GitHub:</p>
               <figure class="code">
@@ -1633,7 +1638,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
               </aside>
               <p class="topic__text">
                 <strong>Boas mensagens de commit</strong> são curtas e dizem o que foi feito: "Adiciona formulário de
-                reserva", "Corrige espaçamento do rodapé". Evite "ajustes" ou "update".
+                contato", "Corrige espaçamento do rodapé". Evite "ajustes" ou "update".
               </p>
             </div>
 
@@ -1650,7 +1655,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
               <ol class="topic__list">
                 <li class="topic__list-item">No GitHub, abra o repositório e vá em <strong>Settings → Pages</strong>.</li>
                 <li class="topic__list-item">Em <strong>Branch</strong>, escolha <code class="inline-code">main</code> e <code class="inline-code">/ (root)</code>, e clique em <strong>Save</strong>.</li>
-                <li class="topic__list-item">Em 1 a 2 minutos, o site fica em <code class="inline-code">https://8felps8.github.io/NOME_DO_REPOSITORIO/</code>.</li>
+                <li class="topic__list-item">Em 1 a 2 minutos, o site fica em <code class="inline-code">https://SEU_USUARIO.github.io/NOME_DO_REPOSITORIO/</code>.</li>
                 <li class="topic__list-item">Coloque esse link no README.</li>
               </ol>
               <p class="topic__text">
@@ -1707,7 +1712,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                 <ul class="checklist__list">
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-1" /><span class="checklist__text"><code class="inline-code">lang="pt-BR"</code>, <code class="inline-code">&lt;title&gt;</code> e as metas <code class="inline-code">charset</code>, <code class="inline-code">viewport</code>, <code class="inline-code">description</code>, <code class="inline-code">author</code> e <code class="inline-code">keywords</code></span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-2" /><span class="checklist__text">Links do favicon (<code class="inline-code">rel="icon"</code>) e do CSS (<code class="inline-code">./pages/index.css</code>)</span></label></li>
-                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-3" /><span class="checklist__text"><code class="inline-code">div.page</code> com <code class="inline-code">header</code>, <code class="inline-code">main.content</code> e <code class="inline-code">footer</code> como filhos diretos</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-3" /><span class="checklist__text"><code class="inline-code">header</code>, <code class="inline-code">main</code> e <code class="inline-code">footer</code> presentes e usados para o que são</span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-4" /><span class="checklist__text">Um único <code class="inline-code">&lt;h1&gt;</code>, títulos sem pular níveis</span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-5" /><span class="checklist__text">Textos em <code class="inline-code">&lt;p&gt;</code>, listas em <code class="inline-code">&lt;ul&gt;</code> e <code class="inline-code">&lt;li&gt;</code></span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-html-6" /><span class="checklist__text">Sem <code class="inline-code">&lt;b&gt;</code>, <code class="inline-code">&lt;i&gt;</code> e <code class="inline-code">&lt;br&gt;</code></span></label></li>
@@ -1738,10 +1743,10 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-3" /><span class="checklist__text"><code class="inline-code">line-height</code> em decimal</span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-4" /><span class="checklist__text">Sem <code class="inline-code">!important</code> e sem margem negativa</span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-5" /><span class="checklist__text">Textos sem altura fixa</span></label></li>
-                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-6" /><span class="checklist__text"><code class="inline-code">position: absolute</code> só onde o roteiro permite</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-6" /><span class="checklist__text"><code class="inline-code">position: absolute</code> só para decoração e sobreposições</span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-7" /><span class="checklist__text">Fundo cobrindo a página inteira, sem bordas brancas</span></label></li>
                   <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-8" /><span class="checklist__text">Conteúdo centralizado, com a largura máxima do design</span></label></li>
-                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-9" /><span class="checklist__text">Estados <code class="inline-code">hover</code> (e <code class="inline-code">focus</code>, se pedido) funcionando</span></label></li>
+                  <li class="checklist__item"><label class="checklist__label"><input class="checklist__checkbox" type="checkbox" id="chk-css-9" /><span class="checklist__text">Estados <code class="inline-code">hover</code> e <code class="inline-code">focus</code> funcionando</span></label></li>
                 </ul>
               </div>
 
@@ -1772,7 +1777,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
           <section class="topic" id="erros" aria-labelledby="erros-title">
             <header class="topic__header">
               <p class="topic__number">Seção 10</p>
-              <h2 class="topic__title" id="erros-title">Erros que já aconteceram (e como resolver)</h2>
+              <h2 class="topic__title" id="erros-title">Erros comuns (e como resolver)</h2>
               <p class="topic__lead">Clique num sintoma para ver a causa e a solução.</p>
             </header>
 
@@ -1831,79 +1836,66 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
 
               <details class="accordion__item" data-part>
                 <summary class="accordion__summary">
-                  <span class="accordion__symptom">Verificador: "deve ter um atributo id com um valor não vazio"</span>
+                  <span class="accordion__symptom">Clico num link do menu e a página não vai para a seção</span>
                   <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                 </summary>
                 <div class="accordion__body">
                   <p class="accordion__label">Causa</p>
-                  <p class="accordion__text">Um link como <code class="inline-code">href="#reservation"</code> não tem destino na página.</p>
+                  <p class="accordion__text">Um link como <code class="inline-code">href="#contact"</code> não tem destino: nenhum elemento tem <code class="inline-code">id="contact"</code>.</p>
                   <p class="accordion__label">Solução</p>
-                  <p class="accordion__text">Acrescente <code class="inline-code">id="reservation"</code> na seção correspondente.</p>
+                  <p class="accordion__text">Acrescente o <code class="inline-code">id</code> na seção correspondente, escrito exatamente igual ao que vem depois do <code class="inline-code">#</code>.</p>
                 </div>
               </details>
 
               <details class="accordion__item" data-part>
                 <summary class="accordion__summary">
-                  <span class="accordion__symptom">Verificador: "O elemento &lt;div&gt; com a classe page está ausente"</span>
+                  <span class="accordion__symptom">Aparece uma rolagem horizontal no celular</span>
                   <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                 </summary>
                 <div class="accordion__body">
                   <p class="accordion__label">Causa</p>
-                  <p class="accordion__text">A classe <code class="inline-code">page</code> estava no <code class="inline-code">&lt;body&gt;</code>.</p>
+                  <p class="accordion__text">Algum elemento é mais largo que a tela, quase sempre por causa de um <code class="inline-code">width</code> fixo em pixels.</p>
                   <p class="accordion__label">Solução</p>
-                  <p class="accordion__text">Use uma <code class="inline-code">&lt;div class="page"&gt;</code> dentro do <code class="inline-code">&lt;body&gt;</code>.</p>
+                  <p class="accordion__text">No DevTools, passe o mouse pelos elementos até achar o que passa da borda. Troque o <code class="inline-code">width</code> por <code class="inline-code">max-width</code>, ou use <code class="inline-code">width: 100%</code>.</p>
                 </div>
               </details>
 
               <details class="accordion__item" data-part>
                 <summary class="accordion__summary">
-                  <span class="accordion__symptom">Verificador: "&lt;header&gt; / &lt;main&gt; / &lt;footer&gt; deve ser filha de div com a classe page"</span>
+                  <span class="accordion__symptom">A imagem fica esticada ou achatada</span>
                   <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                 </summary>
                 <div class="accordion__body">
                   <p class="accordion__label">Causa</p>
-                  <p class="accordion__text">Havia uma <code class="inline-code">&lt;div&gt;</code> entre a <code class="inline-code">div.page</code> e essas tags.</p>
+                  <p class="accordion__text">A largura e a altura foram fixadas numa proporção diferente da imagem original.</p>
                   <p class="accordion__label">Solução</p>
-                  <p class="accordion__text">Deixe <code class="inline-code">header</code>, <code class="inline-code">main</code> e <code class="inline-code">footer</code> como filhos <strong>diretos</strong> da <code class="inline-code">div.page</code>.</p>
+                  <p class="accordion__text">Use <code class="inline-code">width: 100%</code>, <code class="inline-code">aspect-ratio</code> com a proporção do design e <code class="inline-code">object-fit: cover</code>.</p>
                 </div>
               </details>
 
               <details class="accordion__item" data-part>
                 <summary class="accordion__summary">
-                  <span class="accordion__symptom">Verificador: "A tag &lt;main&gt; deve receber a classe .content"</span>
+                  <span class="accordion__symptom">Escrevi um estilo, mas ele não é aplicado</span>
                   <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                 </summary>
                 <div class="accordion__body">
                   <p class="accordion__label">Causa</p>
-                  <p class="accordion__text">O <code class="inline-code">&lt;main&gt;</code> estava sem classe.</p>
+                  <p class="accordion__text">Outra regra está vencendo: ela vem depois no CSS, é mais específica, ou o nome da classe está digitado diferente no HTML.</p>
                   <p class="accordion__label">Solução</p>
-                  <p class="accordion__text">Use <code class="inline-code">&lt;main class="content"&gt;</code>.</p>
+                  <p class="accordion__text">No DevTools, aba <strong>Styles</strong>: a regra que perdeu aparece riscada, e dá para ver qual venceu. Confira também a grafia da classe nos dois arquivos.</p>
                 </div>
               </details>
 
               <details class="accordion__item" data-part>
                 <summary class="accordion__summary">
-                  <span class="accordion__symptom">Verificador: "deve incluir tags &lt;meta&gt; para autor, descrição e palavras-chave"</span>
+                  <span class="accordion__symptom">A margem de um bloco muda em todo lugar onde ele aparece</span>
                   <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
                 </summary>
                 <div class="accordion__body">
                   <p class="accordion__label">Causa</p>
-                  <p class="accordion__text">Faltava a meta <code class="inline-code">keywords</code>.</p>
+                  <p class="accordion__text">A margem externa foi colocada no próprio bloco (ex.: <code class="inline-code">.form</code>).</p>
                   <p class="accordion__label">Solução</p>
-                  <p class="accordion__text">Inclua as três: <code class="inline-code">author</code>, <code class="inline-code">description</code> e <code class="inline-code">keywords</code>.</p>
-                </div>
-              </details>
-
-              <details class="accordion__item" data-part>
-                <summary class="accordion__summary">
-                  <span class="accordion__symptom">Verificador: "valor incorreto para margin-bottom do seletor X"</span>
-                  <svg class="accordion__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
-                </summary>
-                <div class="accordion__body">
-                  <p class="accordion__label">Causa</p>
-                  <p class="accordion__text">O espaço estava como <code class="inline-code">margin-top</code> no elemento de baixo. Na tela fica igual, mas o verificador confere a propriedade.</p>
-                  <p class="accordion__label">Solução</p>
-                  <p class="accordion__text">Coloque a margem no elemento e na propriedade que o verificador indicar.</p>
+                  <p class="accordion__text">Use um mix: <code class="inline-code">class="contact__form form"</code>, com a margem em <code class="inline-code">.contact__form</code>.</p>
                 </div>
               </details>
 
@@ -1984,7 +1976,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
 
                 <div class="tabs__panel" role="tabpanel" id="panel-html" aria-labelledby="tab-html" tabindex="0">
                   <p class="topic__text">
-                    O esqueleto com tudo o que o verificador exige. Se usar <strong>Google Fonts</strong>, acrescente os
+                    O esqueleto com o essencial. Se usar <strong>Google Fonts</strong>, acrescente os
                     <code class="inline-code">&lt;link&gt;</code> do Google Fonts no <code class="inline-code">&lt;head&gt;</code>,
                     antes do <code class="inline-code">&lt;title&gt;</code>.
                   </p>
@@ -1999,7 +1991,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
     &lt;meta charset="UTF-8" /&gt;
     &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
     &lt;meta name="description" content="Resumo da página em uma frase" /&gt;
-    &lt;meta name="author" content="Felipe Leite" /&gt;
+    &lt;meta name="author" content="Seu Nome" /&gt;
     &lt;meta name="keywords" content="palavra1, palavra2, palavra3" /&gt;
     &lt;link rel="stylesheet" href="./pages/index.css" /&gt;
     &lt;link rel="icon" href="./favicon.ico" /&gt;
@@ -2016,7 +2008,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
         &lt;/section&gt;
       &lt;/main&gt;
       &lt;footer class="footer"&gt;
-        &lt;p class="footer__copyright"&gt;© 2026 Felipe Leite&lt;/p&gt;
+        &lt;p class="footer__copyright"&gt;© 2026 Seu Nome&lt;/p&gt;
       &lt;/footer&gt;
     &lt;/div&gt;
   &lt;/body&gt;
@@ -2072,7 +2064,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
 
                 <div class="tabs__panel" role="tabpanel" id="panel-page" aria-labelledby="tab-page" tabindex="0" hidden>
                   <p class="topic__text">
-                    Para projetos responsivos. Se o projeto não for responsivo e tiver largura mínima (como o projeto 4),
+                    Para projetos responsivos. Se o projeto não for responsivo e tiver uma largura mínima,
                     use <code class="inline-code">max-width</code>, <code class="inline-code">min-width</code> e
                     <code class="inline-code">margin: 0 auto</code> no lugar do grid.
                   </p>
@@ -2124,7 +2116,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                 </div>
 
                 <div class="tabs__panel" role="tabpanel" id="panel-readme" aria-labelledby="tab-readme" tabindex="0" hidden>
-                  <p class="topic__text">Os quatro itens obrigatórios, mais os planos de melhoria quando o enunciado pedir.</p>
+                  <p class="topic__text">Nome, descrição, tecnologias, planos de melhoria e o link do site publicado.</p>
                   <figure class="code">
                     <figcaption class="code__header">
                       <span class="code__label">README.md</span>
@@ -2132,7 +2124,7 @@ entre 768 e 1280  →  (768 + 1280) ÷ 2 = 1024</code></pre>
                     </figcaption>
                     <pre class="code__pre"><code class="code__content"># Nome do projeto
 
-Projeto X do curso de Desenvolvimento Web Full-Stack da TripleTen.
+Uma frase que resume o projeto.
 
 ## Descrição
 
@@ -2153,7 +2145,7 @@ O que é a página e o que ela tem: as seções e o que cada uma mostra.
 
 ## GitHub Pages
 
-https://8felps8.github.io/NOME_DO_REPOSITORIO/</code></pre>
+https://SEU_USUARIO.github.io/NOME_DO_REPOSITORIO/</code></pre>
                   </figure>
                 </div>
 
@@ -2212,7 +2204,7 @@ trim_trailing_whitespace = false</code></pre>
               <div class="glossary__item" data-part><dt class="glossary__term">Bloco (BEM)</dt><dd class="glossary__definition">Componente independente da página, como <code class="inline-code">header</code> ou <code class="inline-code">form</code>.</dd></div>
               <div class="glossary__item" data-part><dt class="glossary__term">Elemento (BEM)</dt><dd class="glossary__definition">Parte de um bloco: <code class="inline-code">bloco__elemento</code>.</dd></div>
               <div class="glossary__item" data-part><dt class="glossary__term">Modificador (BEM)</dt><dd class="glossary__definition">Variação de um bloco ou elemento: <code class="inline-code">bloco__elemento_chave_valor</code>.</dd></div>
-              <div class="glossary__item" data-part><dt class="glossary__term">Mix</dt><dd class="glossary__definition">Um elemento HTML com classes de dois blocos: <code class="inline-code">reservation__form form</code>.</dd></div>
+              <div class="glossary__item" data-part><dt class="glossary__term">Mix</dt><dd class="glossary__definition">Um elemento HTML com classes de dois blocos: <code class="inline-code">contact__form form</code>.</dd></div>
               <div class="glossary__item" data-part><dt class="glossary__term">BEM Flat</dt><dd class="glossary__definition">Um arquivo CSS por bloco, todos direto em <code class="inline-code">blocks/</code>.</dd></div>
               <div class="glossary__item" data-part><dt class="glossary__term">Semântica</dt><dd class="glossary__definition">Usar a tag que descreve o conteúdo: <code class="inline-code">&lt;nav&gt;</code>, <code class="inline-code">&lt;footer&gt;</code>...</dd></div>
               <div class="glossary__item" data-part><dt class="glossary__term">Herança</dt><dd class="glossary__definition">Os filhos recebem algumas propriedades do pai, como cor e fonte.</dd></div>

@@ -1,7 +1,7 @@
 # Página de Consulta
 
 Um guia de estudos interativo para começar projetos web com HTML, CSS e a
-metodologia BEM. Reúne tudo o que aprendi nos projetos da TripleTen: estrutura de
+metodologia BEM. Reúne o que aprendi nos meus estudos de front-end: estrutura de
 pastas, semântica, regras de CSS, responsividade, Git e um checklist de entrega.
 
 ## Funcionalidades
@@ -30,7 +30,8 @@ pastas, semântica, regras de CSS, responsividade, Git e um checklist de entrega
 - `localStorage` para lembrar o tema e o progresso do checklist
 - Acessibilidade: navegação por teclado, atributos ARIA nas abas e no menu, foco
   visível e respeito a `prefers-reduced-motion`
-- Normalize.css
+- Normalize.css (licença MIT) e fonte Inter (licença SIL Open Font License,
+  em `vendor/fonts/LICENSE.txt`)
 
 ## Como foi feito
 

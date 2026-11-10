@@ -1,6 +1,6 @@
 // Página de Consulta: interatividade.
 // Cada parte abaixo cuida de uma funcionalidade. Os comentários explicam o
-// que cada trecho faz, como uma prévia do JavaScript que vem nos próximos sprints.
+// que cada trecho faz, como uma prévia de JavaScript para os próximos estudos.
 
 const page = document.querySelector(".page");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
